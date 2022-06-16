@@ -27,13 +27,13 @@ app.set('views', './src/views'); // especifica el directorio de vistas
 app.set('view engine', 'cte'); // registra el motor de plantillas
 
 app.get('/cte1', function (req, res) {
-    const options = {
+    req.body = {
       titulo: 'Pronostico del tiempo',
       mensaje: 'El tiempo estara frio (maxima 3 grados centigrados) y con lloviznas esporadicas',
       autor: 'Servicio meteorologico nacional',
       version: 1
     }
-    res.render('plantilla1', options);
+    res.render('plantilla1', req.body);
   });
   
 
