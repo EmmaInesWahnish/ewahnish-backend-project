@@ -6,11 +6,12 @@ const handlebars = require('express-handlebars');
 
 app.set('view engine', 'handlebars'); // registra el motor de plantillas
 
+app.set('views', './layout')
 
 app.engine('handlebars', handlebars({
-    layoutsDir: __dirname + '/views/layouts',
+    layoutsDir: __dirname + '/layouts',
     }));
-    
+
 app.use(express.static('public'))
 
 app.get('/', (req, res) =>{
