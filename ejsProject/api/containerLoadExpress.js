@@ -3,42 +3,42 @@ const products = [
     {
         title: "Cazuela de Mariscos",
         price: 500,
-        thumbnail: "../assets/cazuela.png",
+        thumbnail: "ejsProject/public/images/cazuela.png",
     },
     {
         title: "Choripan con Chimichurri",
-        thumbnail: "../assets/choripan.png",
+        thumbnail: "ejsProject/public/images/choripan.png",
         price: 350
     },
     {
         title: "Carne a la olla con verduras",
         price: 450,
-        thumbnail: "../assets/carne-a-la-olla.png",
+        thumbnail: "ejsProject/public/images/carne-a-la-olla.png",
     },
     {
         title: "Pierna de cordero rellena",
         price: 500,
-        thumbnail: "../assets/cordero.png",
+        thumbnail: "ejsProject/public/images/cordero.png",
     },
     {
         title: "Frutillas",
         price: 500,
-        thumbnail: "../assets/frutillas.jpg",
+        thumbnail: "ejsProject/public/images/frutillas.jpg",
     },
     {
         title: "Locro",
-        thumbnail: "../assets/locro.png",
+        thumbnail: "ejsProject/public/images/carne-a-la-olla.png",
         price: 350
     },
     {
         title: "Omelette",
         price: 450,
-        thumbnail: "../assets/omeletteKids.jpg",
+        thumbnail: "ejsProject/public/images/carne-a-la-olla.png",
     },
     {
         title: "Tiramisu",
         price: 500,
-        thumbnail: "../assets/tiramisu.jpg",
+        thumbnail: "ejsProject/public/images/tiramisu.jpg",
     },
 ]
 
