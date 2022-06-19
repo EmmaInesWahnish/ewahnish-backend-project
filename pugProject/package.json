@@ -1,6 +1,7 @@
 {
   "name": "pugproject",
   "version": "1.0.0",
+  "type": "module",
   "description": "Express project using PUG template",
   "main": "pugServer.js",
   "scripts": {

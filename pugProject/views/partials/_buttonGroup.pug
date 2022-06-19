@@ -1,0 +1,9 @@
+div(class="bg-primary")
+    button(onclick="goHome()" type="button" class="btn btn-primary")="Home"
+    button(onclick="gotoProducts()" type="button" class="btn btn-primary")="Productos"
+script
+    function goHome() 
+        location.replace("http://localhost:8080/")
+script
+    function gotoProducts() 
+        location.replace("http://localhost:8080/productos")
