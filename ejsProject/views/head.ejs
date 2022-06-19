@@ -1,9 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingreso de Datos en EJS</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel='stylesheet' href='./style.css' />    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel='stylesheet' href='./style.css' />
+    <style>
+        .dflex {
+            display: flex;
+            flex-direction: row;
+            margin: 2px;
+            align-items: center;
+        }
+
+        .titulo {
+            color: darkblue;
+            font-style: italic;
+        }
+
+        footer {
+            display: block;
+            font-size: 1em;
+            margin: 0;
+            padding: 1em;
+            border: #12355B;
+            font-family: trebuchet;
+            color: lightslategray;
+            background-image: linear-gradient(to right, rgba(45, 133, 229, 0), #2d85e5);
+        }
+    </style>
 </head>
+<%- include('./buttonGroup')-%>
