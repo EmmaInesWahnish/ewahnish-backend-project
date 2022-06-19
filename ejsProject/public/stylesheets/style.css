@@ -816,3 +816,17 @@ img#circle {
 .flex-item {
   align-self: center;
 }
+
+.dflex {
+  display: flex;
+  flex-direction: row;
+  margin: 2px;
+  align-items: center;
+}
+
+.titulo {
+  color: darkblue;
+  font-style: italic;
+  justify-content: center;
+  justify-items: center ;
+}
