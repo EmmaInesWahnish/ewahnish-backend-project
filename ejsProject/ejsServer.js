@@ -33,7 +33,7 @@ app.get('/productos', async (req, res) => {
     res.render('products', { productos });
 });
 
-app.post('/datos', async (req, res) => {
+app.post('/productos', async (req, res) => {
     let element = [{
         title: req.body.title,
         price: req.body.price,
