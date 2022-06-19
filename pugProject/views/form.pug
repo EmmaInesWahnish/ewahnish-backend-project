@@ -1,8 +1,8 @@
-<%- include('./head')-%>
-<body>
-    <div class="container mt-3">
-        <div class="jumbotron">
-            <h1 style="color:darkblue;">Ingrese datos</h1>
+include partials/_head
+body
+    div(class="container mt-3")
+        div(class="jumbotron")
+            h1(style="color:darkblue;")="Ingrese datos"
             <br>
 
             <form action="/productos" method="post">
