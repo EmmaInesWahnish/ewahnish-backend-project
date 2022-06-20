@@ -1,7 +1,11 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
+
+//needed for __dirname in handlebars
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+
+//AnyContainer is generic Containes for Class
 import AnyContainer from './api/Container.js'
 
 const Products = new AnyContainer('./files/productos.txt');
@@ -21,7 +25,7 @@ app.engine('hbs',
   })
 );
 
-//seteamos el motor de plantillas
+//Template engine setting
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
@@ -73,6 +77,8 @@ app.post('/productos', async (req, res) => {
   }
 });
 
+/* ------------------------------------------------------ */
+/* Server Listen */
 const PORT = 8080
 const server = app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${server.address().port}`)
