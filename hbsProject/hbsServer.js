@@ -26,8 +26,7 @@ app.set('view engine', 'hbs');
 app.set('views', './views');
 
 app.use(express.static('public'));
-
-let bool;
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', async (req, res) => {
   try {
@@ -46,16 +45,17 @@ app.get('/productos', async (req, res) => {
   catch (error) {
     console.log(error);
   }
-  (productos.length > 0) ? bool = true : bool = false;
   res.render('products', { productos });
 });
 
 app.post('/productos', async (req, res) => {
+  console.log(req.body)
   let element = [{
     title: req.body.title,
     price: req.body.price,
     thumbnail: req.body.thumbnail
   }]
+  console.log(element);
   if (element) {
     try {
       await Products.saveArray(element);
@@ -71,18 +71,6 @@ app.post('/productos', async (req, res) => {
       console.log(error);
     }
   }
-  (productos.length > 0) ? bool = true : bool = false;
-});
-
-app.get('/', (req, res) => {
-  res.render('personas', {
-    nombre: 'Daniel',
-    apellido: 'Sánchez',
-    edad: 52,
-    email: 'danielsanchez68@hotmail.com ',
-    telefono: '1559607538',
-    fyh: new Date().toLocaleString()
-  });
 });
 
 const PORT = 8080
