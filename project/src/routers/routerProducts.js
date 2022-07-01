@@ -62,7 +62,7 @@ routerProducts.post('/', async (req, res) => {
     } else {
         let receive = req.body;
         let producto = [{
-            timestamp: receive.timestamp,
+            timestamp: Date.now(),
             nombre: receive.nombre,
             descripcion: receive.descripcion,
             codigo: receive.codigo,
