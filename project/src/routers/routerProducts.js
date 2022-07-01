@@ -3,7 +3,7 @@ const AnyContainer = require("../api/Container.js");
 const routerProducts = express.Router();
 const fs = require('fs');
 
-const Products = new AnyContainer('./files/products.txt');
+const Products = new AnyContainer('./files/productos.txt');
 
 let isAdmin = true;
 
@@ -150,9 +150,9 @@ routerProducts.put('/:id', async (req, res) => {
                 })
             })
 
-            //products.txt file is replaced with the updated array
+            //productos.txt file is replaced with the updated array
             try {
-                await fs.promises.unlink('./src/files/products.txt');
+                await fs.promises.unlink('./src/files/productos.txt');
                 try {
                     await Products.save(array);
                     res.json({
@@ -162,14 +162,14 @@ routerProducts.put('/:id', async (req, res) => {
                 }
                 catch (error) {
                     res.json({
-                        message: 'No fue posible cargar los productos en products.txt',
+                        message: 'No fue posible cargar los productos en productos.txt',
                         error: error
                     })
                 }
             }
             catch (error) {
                 res.json({
-                    message: 'No se pudo borrar el archivo products.txt',
+                    message: 'No se pudo borrar el archivo productos.txt',
                     error: error
                 })
             }
