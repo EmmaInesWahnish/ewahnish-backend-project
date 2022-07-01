@@ -1,6 +1,6 @@
-const AnyContainer = require('../api/Container.js');
+import AnyContainer from '../api/Container.js';
 
-const Products = new AnyContainer('./files/messages.txt');
+const Products = new AnyContainer('./files/carrito.txt');
 
 console.log(Products)
 

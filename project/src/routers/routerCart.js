@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const routerCart = express.Router();
 
 let isAdmin = true;
@@ -194,4 +194,4 @@ routerCart.delete('/:id', async (req, res) => {
     }
 })
 
-module.exports = routerCart;
+export default routerCart;

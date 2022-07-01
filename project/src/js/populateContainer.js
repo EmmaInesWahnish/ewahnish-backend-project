@@ -1,3 +1,3 @@
-const anyContainerLoader = require('./containerLoadExpress.js');
+import anyContainerLoader from './containerLoadExpress.js';
 anyContainerLoader()
 

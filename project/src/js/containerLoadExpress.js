@@ -1,4 +1,4 @@
-const AnyContainer = require('../api/Container.js');
+import AnyContainer from '../api/Container.js';
 const products = [
     {
         timestamp: Date.now(),
@@ -199,4 +199,4 @@ async function anyContainerLoader() {
     
 }
 
-module.exports = anyContainerLoader;
+export default anyContainerLoader;

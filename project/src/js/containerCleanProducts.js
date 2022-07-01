@@ -1,4 +1,4 @@
-const AnyContainer = require('../api/Container.js');
+import AnyContainer from '../api/Container.js';
 
 const Products = new AnyContainer('./files/productos.txt');
 
@@ -8,4 +8,4 @@ async function anyContainerClean() {
     
 }
 
-module.exports = anyContainerClean;
+export default anyContainerClean;

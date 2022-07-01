@@ -1,7 +1,8 @@
-const express = require('express');
-const AnyContainer = require("../api/Container.js");
+import express from 'express';
+import AnyContainer from "../api/Container.js";
+
 const routerProducts = express.Router();
-const fs = require('fs');
+import fs from 'fs';
 
 const Products = new AnyContainer('./files/productos.txt');
 
@@ -219,4 +220,4 @@ routerProducts.delete('/:id', async (req, res) => {
     }
 })
 
-module.exports = routerProducts;
+export default routerProducts;

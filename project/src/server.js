@@ -1,13 +1,12 @@
-const AnyContainer = require("./api/Container.js");
-const express = require('express');
-const routerProducts = require('./routers/routerProducts.js')
-const routerCart = require('./routers/routerCart.js')
+import express from 'express';
+import routerProducts from './routers/routerProducts.js';
+import routerCart from './routers/routerCart.js';
 
 const app = express();
 
 // this code is necessary for express to understand json format
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
