@@ -28,7 +28,6 @@ h1 {
 /*titulos h2 algo mas pequeños*/
 h2 {
   font-family: trebuchet;
-  color: #2D85E5;
   font-size: 1.8em;
   font-weight: 600;
 }
@@ -36,7 +35,6 @@ h2 {
 /*Subtitulo explicaciones*/
 h4 {
   font-family: trebuchet;
-  color: #2D85E5;
 }
 
 body {
