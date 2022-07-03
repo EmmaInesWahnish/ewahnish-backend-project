@@ -1,6 +1,8 @@
 import express from 'express';
-const routerCart = express.Router();
+import AnyContainer from "../api/Container.js";
 
+const routerCart = express.Router();
+const Cart = new AnyContainer('./files/carrito.txt');
 // *** ROUTES ***
 //This route returns everything
 routerCart.get('/', async (req, res) => {
