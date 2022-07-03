@@ -84,7 +84,7 @@ const products = [
     {
         timestamp: Date.now(),
         nombre: "Compresor de aire 12V Metal",
-        descripcion: "Compresor se aire apto para auto bici y moto",
+        descripcion: "Compresor de aire apto para auto bici y moto",
         codigo: "CA-00-01",
         foto: "/images/compresor-aire.jpeg",
         precio: 3280,

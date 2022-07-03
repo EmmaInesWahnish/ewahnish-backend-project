@@ -13,7 +13,11 @@ let isAdmin = true;
 routerProducts.get('/', async (req, res) => {
     try {
         const array = await Products.getAll();
-        res.json({ message: 'Lista de productos ', products: array });
+        res.json({ 
+            message: 'Lista de productos ', 
+            products: array,
+            bool: isAdmin 
+        });
     }
     catch (error) {
         res.json({
@@ -32,7 +36,8 @@ routerProducts.get('/:id', async (req, res) => {
             if (producto != undefined) {
                 res.json({
                     message: 'Producto encontrado',
-                    product: producto
+                    product: producto,
+                    bool: isAdmin
                 })
             } else {
                 res.json({
@@ -78,7 +83,8 @@ routerProducts.post('/', async (req, res) => {
                     const products = await Products.getAll();
                     res.json({
                         message: "Producto incorporado",
-                        product: producto
+                        product: producto,
+                        bool: isAdmin
                     })
                 }
                 catch (error) {
