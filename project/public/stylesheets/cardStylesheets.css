@@ -95,7 +95,7 @@
     font-family: trebuchet;
     color: lightslategray;
     /*background-image: linear-gradient(to right, rgba(45, 133, 229, 0), #dc3545); }*/
-    background-image: linear-gradient(to right, rgba(45, 133, 229, 0), #ffc107);
+    background-image: linear-gradient(to right, rgba(45, 133, 229, 0), rgb(3, 3, 63));
   }
   
   .pictures {
