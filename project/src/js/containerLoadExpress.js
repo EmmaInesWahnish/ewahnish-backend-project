@@ -59,7 +59,7 @@ const products = [
         nombre: "Cables de bateria",
         descripcion: "Cables de bateria",
         codigo: "CB-00-01",
-        foto: "/images/cables-bateria.jpeg",
+        foto: "/images/cable-bateria.jpeg",
         precio: 1970,
         stock: 400
     },
@@ -185,7 +185,7 @@ const products = [
         nombre: "Soldadora Inverter",
         descripcion: "Soldadora Inverter Kommbera",
         codigo: "SI-00-01",
-        foto: "/images/soldadora-inverter.jpeg",
+        foto: "/images/soldadora.jpeg",
         precio: 14990,
         stock: 40
     },
