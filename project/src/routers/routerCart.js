@@ -2,8 +2,8 @@ import express from 'express';
 const routerCart = express.Router();
 
 // *** ROUTES ***
-//This route returns the Cart list
-routerCart.get('/:id/productos', async (req, res) => {
+//This route returns everything
+routerCart.get('/', async (req, res) => {
     try {
         const array = await Cart.getAll();
         res.json({ message: 'Carritos ', carrito: array });
@@ -50,12 +50,13 @@ routerCart.get('/:id', async (req, res) => {
 routerCart.post('/', async (req, res) => {
     let receive = req.body;
     let carrito = [{
-        timestamp: receive.timestamp,
+        timestamp: Date.now(),
         productos: [],
     }]
+    console.log(carrito)
     if (carrito) {
         try {
-            await Cart.save(carrito);
+            await Cart.saveArray(carrito);
             try {
                 const Cart = await Cart.getAll();
                 res.json({
