@@ -3,8 +3,9 @@ import AnyContainer from "../api/Container.js";
 
 const routerCart = express.Router();
 const Cart = new AnyContainer('./files/carrito.txt');
+const Product = new AnyContainer('./files/productos.txt')
 // *** ROUTES ***
-//This route returns everything
+//This route returns all carts
 routerCart.get('/', async (req, res) => {
     try {
         const array = await Cart.getAll();
@@ -18,7 +19,7 @@ routerCart.get('/', async (req, res) => {
     }
 })
 
-//This route returns a product according to its id.
+//This route returns a cart according to its id.
 routerCart.get('/:id', async (req, res) => {
     let id = parseInt(req.params.id);
     if (!isNaN(id)) {
@@ -27,7 +28,8 @@ routerCart.get('/:id', async (req, res) => {
             if (carrito != undefined) {
                 res.json({
                     message: 'carrito encontrado',
-                    product: carrito
+                    timestamp: carrito.timestamp,
+                    productos: carrito.productos
                 })
             } else {
                 res.json({
@@ -86,8 +88,8 @@ routerCart.post('/', async (req, res) => {
     }
 })
 
-//This route updates the product with the selected id
-//A property is updated only if it receives a non null value
+//This route updates the cart with the selected id
+//A product is added to the cart with id :id
 routerCart.post('/:id/productos', async (req, res) => {
     const id = parseInt(req.params.id);
     let receive = req.body;
@@ -96,7 +98,7 @@ routerCart.post('/:id/productos', async (req, res) => {
     try {
         const Cart = await Cart.getAll();
         const indexc = Cart.findIndex(element => element.id === id);
-        searchedProduct = Cart[indexc];
+        searchedCart = Cart[indexc];
         console.log(indexc, " Modifico ", searchedProduct);
         if (indexc !== -1) {
             const theLength = searchedCart.productos.length
@@ -165,8 +167,9 @@ routerCart.post('/:id/productos', async (req, res) => {
 
 })
 
-routerCart.delete('/:id/productos', async (req, res) => {
+routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
     const id = parseInt(req.params.id);
+    const id_prod = parseInt(req.params.id_prod)
     let receive = req.body;
     let searchedProduct = {};
     console.log("The id ", id, "receive  ", receive)
@@ -248,15 +251,17 @@ routerCart.delete('/:id', async (req, res) => {
     console.log(id);
     if (!isNaN(id)) {
         try {
-            const removedProduct = await Cart.deleteById(id);
-            if (removedProduct.length === 0) {
+            const removedCart = await Cart.deleteById(id);
+            let howManyProducts = Cart.productos.length;
+
+            if (removedCart.length === 0) {
                 res.json({
                     message: "El carrito solicitado no existe"
                 })
             } else {
                 res.json({
                     message: "El carrito ha sido eliminado",
-                    product: removedProduct
+                    product: removedCart
                 })
             }
         }

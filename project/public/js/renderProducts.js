@@ -1,17 +1,35 @@
 let array = [];
+
+//element.parentNode.removeChild(element);
 const renderProducts = () => {
+    document.getElementById('newProduct').innerHTML="";
     fetch('http://localhost:8080/api/productos')
         .then(res => res.json())
         .then(data => {
             console.log(data.bool);
+            document.getElementById('enableButton').innerHTML="";
+            const enableButton = document.getElementById('enableButton')
+            
+            const enableCart = document.createElement('div')
+            enableCart.innerHTML = `<button style="width:250px" 
+                                        id="enableThis"
+                                        class="btn btn-info">
+                                            Habilitacion de carrito de compra
+                                    </button>
+                                </div>`
+
+            enableButton.appendChild(enableCart);
+            document.getElementById('productCards').innerHTML="";
             const cardContainer = document.getElementById('productCards')
+
             for (let product of data.products) {
                 array.push(product)
                 const cards = document.createElement('div');
 
                 cards.setAttribute('class', 'flex-container-card')
 
-                cards.innerHTML = `<div id=${product.id} class="card-header center" width="300px" >
+                cards.innerHTML = `<div>
+                                    <div id=${product.id} class="card-header center" width="300px" >
                                         <h3>${product.id} ${product.codigo}</h3>
                                         <h3>${product.nombre}</h3> 
                                         <h3>${product.descripcion}</h3>
@@ -64,6 +82,11 @@ const renderProducts = () => {
                                                 id=C${product.id} 
                                                 class="btn btn-success" style="width:250px">
                                                     Agregar al carrito
+                                        </button>
+                                        <button 
+                                                id=C${product.id} 
+                                                class="btn btn-danger" style="width:250px">
+                                                    Eliminar del carrito
                                         </button>`
                 }
 
