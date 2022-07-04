@@ -2,24 +2,25 @@ let array = [];
 
 //element.parentNode.removeChild(element);
 const renderProducts = () => {
-    document.getElementById('newProduct').innerHTML="";
+    document.getElementById('newProduct').innerHTML = "";
     fetch('http://localhost:8080/api/productos')
         .then(res => res.json())
         .then(data => {
             console.log(data.bool);
-            document.getElementById('enableButton').innerHTML="";
+            document.getElementById('enableButton').innerHTML = "";
             const enableButton = document.getElementById('enableButton')
-            
-            const enableCart = document.createElement('div')
-            enableCart.innerHTML = `<button style="width:250px" 
-                                        id="enableThis"
+            if (!data.bool) {
+                const enableCart = document.createElement('div')
+                enableCart.innerHTML = `<button style="width:250px" 
+                                        id="enableCart"
                                         class="btn btn-info">
                                             Habilitacion de carrito de compra
                                     </button>
                                 </div>`
 
-            enableButton.appendChild(enableCart);
-            document.getElementById('productCards').innerHTML="";
+                enableButton.appendChild(enableCart);
+            }
+            document.getElementById('productCards').innerHTML = "";
             const cardContainer = document.getElementById('productCards')
 
             for (let product of data.products) {
@@ -45,7 +46,7 @@ const renderProducts = () => {
 
                 let theId = `${product.id}`;
 
-                let quantity=0
+                let quantity = 0
 
                 const cardButtons = document.getElementById(theId);
 

@@ -6,7 +6,7 @@ import fs from 'fs';
 
 const Products = new AnyContainer('./files/productos.txt');
 
-let isAdmin = true;
+let isAdmin = false;
 
 // *** ROUTES ***
 //This route returns the products list
@@ -62,7 +62,7 @@ routerProducts.get('/:id', async (req, res) => {
 routerProducts.post('/', async (req, res) => {
     if (!isAdmin) {
         res.json({
-            descripcion: 'Ruta "/" metodo "POST" no autorizado',
+            message:  `Ruta ${req.path} metodo ${req.method} no autorizada`,
             error: -1
         })
     } else {

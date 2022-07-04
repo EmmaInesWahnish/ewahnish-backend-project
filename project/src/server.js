@@ -13,6 +13,12 @@ app.use(express.static("public"));
 app.use('/api/productos', routerProducts);
 app.use('/api/carrito', routerCart);
 
+app.all('*', (req, res) => {
+    res.status(404).send({
+        error: -2,
+        message: `404 - ruta no encontrada ${req.path}`
+    })
+})
 
 /* Server Listen */
 const port = process.env.PORT || 8080;
