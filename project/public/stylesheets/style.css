@@ -330,17 +330,6 @@ button,
 
 /* flex container*/
 /*fin para listados*/
-.w3-modal-content .form__item__input {
-  display: block;
-  width: 40%;
-  min-height: fit-content;
-  border: 3px;
-  margin: 3px;
-  padding: 5px;
-  border-color: #12355B;
-  border-style: solid;
-}
-
 .form {
   width: auto;
   gap: 5px;
@@ -491,29 +480,7 @@ footer {
 }
 
 /*finaliza seccion pagina acerca de nosotros*/
-/* Header Modal Explicativo*/
-.header-modal {
-  color: #2D85E5;
-  width: 100%;
-  height: auto;
-  border: 0;
-  background-image: linear-gradient(to right, rgba(45, 133, 229, 0), #2d85e5);
-}
 
-/* Texto Modal Explicativo*/
-.texto-modal {
-  color: #12355B;
-  margin: 5px;
-  border: 5px;
-  padding: 10px;
-}
-
-.modal-content {
-  background-color: transparent;
-  padding: 0;
-}
-
-/*Fin Modal Texto explicativo*/
 /*para listados*/
 .espacio-listado {
   margin: auto;
@@ -564,13 +531,6 @@ table td {
 
 .imgbanner-tipob {
   background-color: #FFAC44;
-}
-
-/*modal-container class*/
-.modal-container {
-  border-color: #2D85E5;
-  padding: 5px;
-  border-style: ridge;
 }
 
 /*userid class*/
@@ -840,7 +800,7 @@ strong, b {
 }
 
 i {
-  color: green
+  color: blue;
 }
 
 #theDate {

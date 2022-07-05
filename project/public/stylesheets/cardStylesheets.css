@@ -33,15 +33,13 @@
   .modal {
     display: none;
     /* Hidden by default */
-    position: absolute;
+    position: fixed;
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
     padding: 1em;
     /* Location of the box */
-    left: 20;
-    top: 0;
-    width: auto;
+    width: 60%;
     /* Full width */
     height: auto;
     /* Full height */

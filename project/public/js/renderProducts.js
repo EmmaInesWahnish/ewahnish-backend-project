@@ -1,3 +1,6 @@
+import renderModalModifyProduct from './renderModalModifyProduct.js';
+import renderModalDeleteProduct from './renderModalDeleteProduct.js';
+
 let array = [];
 
 //element.parentNode.removeChild(element);
@@ -8,9 +11,9 @@ const renderProducts = () => {
         .then(data => {
             console.log(data.bool);
             document.getElementById('enableButton').innerHTML = "";
-            const enableButton = document.getElementById('enableButton')
+            const enableButton = document.getElementById('enableButton');
             if (!data.bool) {
-                const enableCart = document.createElement('div')
+                const enableCart = document.createElement('div');
                 enableCart.innerHTML = `<button style="width:250px" 
                                         id="enableCart"
                                         class="btn btn-info">
@@ -20,7 +23,9 @@ const renderProducts = () => {
 
                 enableButton.appendChild(enableCart);
             }
+
             document.getElementById('productCards').innerHTML = "";
+
             const cardContainer = document.getElementById('productCards')
 
             for (let product of data.products) {
@@ -32,7 +37,7 @@ const renderProducts = () => {
                 cards.innerHTML = `<div>
                                     <div id=${product.id} class="card-header center" width="300px" >
                                         <h3>${product.id} ${product.codigo}</h3>
-                                        <h3>${product.nombre}</h3> 
+                                        <h3><i>${product.nombre}</i></h3> 
                                         <h3>${product.descripcion}</h3>
                                         <h3>Precio: ${product.precio}</h3>
                                         <h3>Stock: ${product.stock}</h3>
@@ -62,7 +67,30 @@ const renderProducts = () => {
                                                 id=D${product.id}
                                                 class="btn btn-danger">
                                                     Eliminacion de Producto
-                                        </button>`
+                                        </button>`;  
+
+                    cardButtons.appendChild(buttons)                    
+
+                    let productId = `U${product.id}`
+
+                    let formModifyProduct = document.getElementById(productId);
+
+                    formModifyProduct.addEventListener('click', function () {
+
+                        renderModalModifyProduct(product);
+
+                    })
+
+                    let dproductId = `D${product.id}`
+
+                    let formDeleteProduct = document.getElementById(dproductId);
+
+                    formDeleteProduct.addEventListener('click', function () {
+
+                        renderModalDeleteProduct(product);
+
+                    })
+
                 } else {
                     buttons.innerHTML = `<div class="flex-container-buttons  p-0 m-0" style="width:250px">
                                             <button id=A${product.id}
@@ -80,7 +108,7 @@ const renderProducts = () => {
                                             </button>
                                         </div>                                
                                         <button 
-                                                id=C${product.id} 
+                                                id=M${product.id} 
                                                 class="btn btn-success" style="width:250px">
                                                     Agregar al carrito
                                         </button>
@@ -88,13 +116,14 @@ const renderProducts = () => {
                                                 id=C${product.id} 
                                                 class="btn btn-danger" style="width:250px">
                                                     Eliminar del carrito
-                                        </button>`
+                                        </button>`;
+
+
+                    cardButtons.appendChild(buttons)
                 }
 
-                cardButtons.appendChild(buttons)
+
             }
-
-
         })
         .catch(err => console.log(err))
 }
