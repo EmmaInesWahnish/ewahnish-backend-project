@@ -30,22 +30,12 @@ const renderModalDeleteProduct = (product) => {
         <span id="foto" class="form-control" name="foto">${product.foto}</span>
       </div>
 
-      <div class="form-group">
-        <label for="precio"><b>Precio</b></label>
-        <span id="precio" class="form-control" name="precio">${product.precio}<span>
-      </div>
-
-      <div class="form-group">
-        <label for="stock"><b>Stock</b></label>
-        <span id="stock" class="form-control" name="stock">${product.stock}
-      </div>
-
       <button type="submit" id=${buttonId} class="btn btn-success">Confirmar Eliminacion</button>`;
 
     let formDelete = document.getElementById(buttonId);
 
     formDelete.addEventListener('click', function () {
-        console.log(`Se eliminaria el producto es  ${product.id}`)
+        console.log(`Se eliminaria el producto ${product.id}`)
         document.getElementById('modalForm').style.display = 'none';
     })
 

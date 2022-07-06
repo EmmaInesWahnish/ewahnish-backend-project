@@ -1,5 +1,7 @@
 import renderModalModifyProduct from './renderModalModifyProduct.js';
 import renderModalDeleteProduct from './renderModalDeleteProduct.js';
+import renderModalAddToCart from './renderModalAddToCart.js';
+import renderModalDeleteFromCart from './renderModalDeleteFromCart.js';
 
 let array = [];
 
@@ -120,6 +122,27 @@ const renderProducts = () => {
 
 
                     cardButtons.appendChild(buttons)
+
+                    let productId = `M${product.id}`
+
+                    let formModifyProduct = document.getElementById(productId);
+
+                    formModifyProduct.addEventListener('click', function () {
+
+                        renderModalModifyProduct(product);
+
+                    })
+
+                    let dproductId = `D${product.id}`
+
+                    let formDeleteProduct = document.getElementById(dproductId);
+
+                    formDeleteProduct.addEventListener('click', function () {
+
+                        renderModalDeleteProduct(product);
+
+                    })
+
                 }
 
 
