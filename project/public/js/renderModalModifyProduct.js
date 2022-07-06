@@ -45,7 +45,7 @@ const renderModalModifyProduct = (product) => {
     let formUpdate = document.getElementById(buttonId);
 
     formUpdate.addEventListener('click', function () {
-        console.log(`El Id de producto es  ${buttonId}`)
+        alert(`El Id de producto modificado sería  ${buttonId}`)
         document.getElementById('modalForm').style.display = 'none';
     })
 

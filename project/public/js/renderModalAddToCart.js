@@ -11,7 +11,7 @@ const renderModalAddToCart = (product, quantity, cartId) => {
         cantidad: quantity
     }
 
-    console.log(`Aqui se agregaría ${cartProduct} al carrito con id ${cartId}`);
+    alert(`Aqui se agregaría ${cartProduct} al carrito con id ${cartId}`);
 
 }
 

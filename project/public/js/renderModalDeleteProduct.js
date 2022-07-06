@@ -35,7 +35,7 @@ const renderModalDeleteProduct = (product) => {
     let formDelete = document.getElementById(buttonId);
 
     formDelete.addEventListener('click', function () {
-        console.log(`Se eliminaria el producto ${product.id}`)
+        alert(`Se eliminaria el producto ${product.id}`)
         document.getElementById('modalForm').style.display = 'none';
     })
 

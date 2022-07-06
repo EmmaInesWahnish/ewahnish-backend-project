@@ -7,24 +7,13 @@ let array = [];
 
 //element.parentNode.removeChild(element);
 const renderProducts = () => {
+    let quantity = 0;
+    let cartId = 0;
     document.getElementById('newProduct').innerHTML = "";
     fetch('http://localhost:8080/api/productos')
         .then(res => res.json())
         .then(data => {
             console.log(data.bool);
-            document.getElementById('enableButton').innerHTML = "";
-            const enableButton = document.getElementById('enableButton');
-            if (!data.bool) {
-                const enableCart = document.createElement('div');
-                enableCart.innerHTML = `<button style="width:250px" 
-                                        id="enableCart"
-                                        class="btn btn-info">
-                                            Habilitacion de carrito de compra
-                                    </button>
-                                </div>`
-
-                enableButton.appendChild(enableCart);
-            }
 
             document.getElementById('productCards').innerHTML = "";
 
@@ -52,8 +41,6 @@ const renderProducts = () => {
                 cardContainer.appendChild(cards);
 
                 let theId = `${product.id}`;
-
-                let quantity = 0
 
                 const cardButtons = document.getElementById(theId);
 
@@ -89,7 +76,7 @@ const renderProducts = () => {
 
                     formDeleteProduct.addEventListener('click', function () {
 
-                        renderModalDeleteProduct(product);
+                        renderModalDeleteProduct(product, quantity);
 
                     })
 
@@ -123,28 +110,36 @@ const renderProducts = () => {
 
                     cardButtons.appendChild(buttons)
 
-                    let productId = `M${product.id}`
+                    let mButtonId = `M${product.id}`
 
-                    let formModifyProduct = document.getElementById(productId);
+                    let addProductToCart = document.getElementById(mButtonId);
 
-                    formModifyProduct.addEventListener('click', function () {
+                    addProductToCart.addEventListener('click', function () {
 
-                        renderModalModifyProduct(product);
+                        if (cartId = 0){
+                            cartId = modalCreateCart();
+                        }
+
+                        renderModalAddToCart(product,quantity,cartId);
 
                     })
 
-                    let dproductId = `D${product.id}`
+                    let dButtonId = `D${product.id}`
 
-                    let formDeleteProduct = document.getElementById(dproductId);
+                    let deleteProductFromCart = document.getElementById(dButtonId);
 
-                    formDeleteProduct.addEventListener('click', function () {
+                    deleteProductFromCart.addEventListener('click', function () {
 
-                        renderModalDeleteProduct(product);
+                        if (cartId = 0){
+                            alert(`Aun no se ha habilitado ningun carrito`);
+                            return;
+                        }
+
+                        renderModalDeleteFromCart(product,quantity,cartId);
 
                     })
 
                 }
-
 
             }
         })
