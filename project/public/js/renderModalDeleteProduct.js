@@ -1,3 +1,4 @@
+import deleteOneProduct from './deleteOneProduct.js'
 const renderModalDeleteProduct = (product) => {
     //console.log(product)
     let buttonId = "DM" + product.id;
@@ -35,7 +36,7 @@ const renderModalDeleteProduct = (product) => {
     let formDelete = document.getElementById(buttonId);
 
     formDelete.addEventListener('click', function () {
-        alert(`Se eliminaria el producto ${product.id}`)
+        deleteOneProduct(product.id);
         document.getElementById('modalForm').style.display = 'none';
     })
 
