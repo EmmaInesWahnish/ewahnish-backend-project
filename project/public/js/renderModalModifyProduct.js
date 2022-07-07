@@ -1,59 +1,85 @@
 const renderModalModifyProduct = (product) => {
-    //console.log(product)
-    let buttonId = "SM" + product.id;
+  //console.log(product)
+  let buttonId = "SM" + product.id;
 
-    document.getElementById('modalForm').style.display = 'block';
+  document.getElementById('modal').style.display = 'block';
 
-    const theForm = document.getElementById('theForm');
+  const modifyForm = document.getElementById('modifyForm');
 
-    theForm.innerHTML = `<div class="form-group">
+  modifyForm.innerHTML = `<div class="form-group">
         <span for="productId"><b>Id de Producto ${product.id}</b></span>
       </div>
 
       <div class="form-group">
         <label for="nombre"><b>Nombre</b></label>
-        <input id="nombre" class="form-control" type="text" name="nombre" value=${product.nombre}>
+        <input id="name" class="form-control" type="text" name="nombre" >
       </div>
 
       <div class="form-group">
         <label for="descripcion"><b>Descripcion</b></label>
-        <input id="descripcion" class="form-control" type="text" name="descripcion" value=${product.descripcion}>
+        <input id="desc" class="form-control" type="text" name="descripcion" value=${product.descripcion}>
       </div>
 
       <div class="form-group">
         <label for="codigo"><b>Codigo</b></label>
-        <input id="codigo" class="form-control" type="text" name="codigo" value=${product.codigo}>
+        <input id="code" class="form-control" type="text" name="codigo" value=${product.codigo}>
       </div>
 
       <div class="form-group">
         <label for="foto"><b>Foto (url)</b></label>
-        <input id="foto" class="form-control" type="text" name="foto" value=${product.foto}>
+        <input id="photo" class="form-control" type="text" name="photo">
       </div>
 
       <div class="form-group">
         <label for="precio"><b>Precio</b></label>
-        <input id="precio" class="form-control" type="number" name="precio" value=${product.precio}>
+        <input id="price" class="form-control" type="number" name="precio" >
       </div>
 
       <div class="form-group">
         <label for="stock"><b>Stock</b></label>
-        <input id="stock" class="form-control" type="text" name="stock" value=${product.stock}>
+        <input id="quantity" class="form-control" type="text" name="stock" >
       </div>
 
       <button type="submit" id=${buttonId} class="btn btn-success">Enviar</button>`;
 
-    let formUpdate = document.getElementById(buttonId);
+  document.getElementById("name").value = product.nombre;
+  document.getElementById("desc").value = product.descripcion;
+  document.getElementById("code").value = product.codigo;
+  document.getElementById("photo").value = product.foto;
+  document.getElementById("price").value = product.precio;
+  document.getElementById("quantity").value = product.stock;
 
-    formUpdate.addEventListener('click', function () {
-        alert(`El Id de producto modificado sería  ${buttonId}`)
-        document.getElementById('modalForm').style.display = 'none';
-    })
+  let formUpdate = document.getElementById(buttonId);
 
-    let closeModal = document.getElementById('close_generic');
+  formUpdate.addEventListener('click', function () {
 
-    closeModal.addEventListener('click', function () {
-        document.getElementById('modalForm').style.display = 'none';
-    })
+    product.nombre = document.getElementById("name");
+    product.description = document.getElementById("desc").value;
+    product.codigo = document.getElementById("code").value;
+    product.foto = document.getElementById("photo").value;
+    product.precio = document.getElementById("price").value;
+    product.stock = document.getElementById("quantity").value;
+
+    let modifiedProduct = {
+      id: product.id,
+      timestamp: product.timestamp,
+      nombre: product.nombre,
+      descripcion: product.descripcion,
+      codigo: product.codigo,
+      foto: product.foto,
+      precio: product.precio,
+      stock: product.stock,
+  }
+
+  
+    document.getElementById('modal').style.display = 'none';
+  })
+
+  let closeModal = document.getElementById('close');
+
+  closeModal.addEventListener('click', function () {
+    document.getElementById('modal').style.display = 'none';
+  })
 
 }
 

@@ -1,6 +1,3 @@
-import { response } from "express";
-
-//element.parentNode.removeChild(element);
 const modifyOneProduct = (product, productId) => {
     let modifiedProduct = {
         id: product.id,
