@@ -2,13 +2,18 @@ import renderModalModifyProduct from './renderModalModifyProduct.js';
 import renderModalDeleteProduct from './renderModalDeleteProduct.js';
 import renderModalAddToCart from './renderModalAddToCart.js';
 import renderModalDeleteFromCart from './renderModalDeleteFromCart.js';
+import modalCreateCart from './modalCreateCart.js'
+import addToQuantity from './addToQuantity.js';
+import subtractFromQuantity from './subtractFromQuantity.js'
 
 let array = [];
 
 //element.parentNode.removeChild(element);
 const renderProducts = () => {
-    let quantity = 0;
+    let quantity = []
+    let i = 0
     let cartId = 0;
+    let cart=[];
     document.getElementById('newProduct').innerHTML = "";
     fetch('http://localhost:8080/api/productos')
         .then(res => res.json())
@@ -21,6 +26,7 @@ const renderProducts = () => {
 
             for (let product of data.products) {
                 array.push(product)
+                quantity[product.id] = 0;
                 const cards = document.createElement('div');
 
                 cards.setAttribute('class', 'flex-container-card')
@@ -76,7 +82,7 @@ const renderProducts = () => {
 
                     formDeleteProduct.addEventListener('click', function () {
 
-                        renderModalDeleteProduct(product, quantity);
+                        renderModalDeleteProduct(product, quantity[product.id]);
 
                     })
 
@@ -88,7 +94,7 @@ const renderProducts = () => {
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
 </svg>
                                             </button>
-                                            <div id=Q${product.id} class="flex-item"><span> ${quantity} </span></div>
+                                            <div id=Q${product.id} class="flex-item"><span> ${quantity[product.id]} </span></div>
                                             <button id=S${product.id}
                                                     class="btn btn-xs btn-light">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
@@ -116,26 +122,45 @@ const renderProducts = () => {
 
                     addProductToCart.addEventListener('click', function () {
 
-                        if (cartId = 0){
-                            cartId = modalCreateCart();
+                        if (cartId === 0){
+                            cart = modalCreateCart();
                         }
 
-                        renderModalAddToCart(product,quantity,cartId);
+                        renderModalAddToCart(product,quantity[product.id],cart);
 
                     })
 
-                    let dButtonId = `D${product.id}`
+                    let dButtonId = `C${product.id}`
+
+                    let productId = `${product.id}`
 
                     let deleteProductFromCart = document.getElementById(dButtonId);
 
                     deleteProductFromCart.addEventListener('click', function () {
 
-                        if (cartId = 0){
+                        if (cartId === 0){
                             alert(`Aun no se ha habilitado ningun carrito`);
-                            return;
+                        } else {
+                            renderModalDeleteFromCart(productId,cartId);
                         }
+                    })
 
-                        renderModalDeleteFromCart(product,quantity,cartId);
+                    let aButtonId = `A${product.id}`
+
+                    let add = document.getElementById(aButtonId);
+
+                    add.addEventListener('click', function () {
+
+                        quantity[product.id] = addToQuantity(quantity[product.id], product);
+                    })
+
+                    let sButtonId = `S${product.id}`
+
+                    let subtract = document.getElementById(sButtonId);
+
+                    subtract.addEventListener('click', function () {
+
+                        quantity[product.id] = subtractFromQuantity(quantity[product.id], product);
 
                     })
 

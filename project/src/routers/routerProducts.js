@@ -6,7 +6,7 @@ import fs from 'fs';
 
 const Products = new AnyContainer('./files/productos.txt');
 
-let isAdmin = true;
+let isAdmin = false;
 
 // *** ROUTES ***
 //This route returns the products list
