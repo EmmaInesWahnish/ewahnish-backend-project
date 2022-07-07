@@ -5,34 +5,32 @@ import renderModalDeleteFromCart from './renderModalDeleteFromCart.js';
 import modalCreateCart from './modalCreateCart.js'
 import addToQuantity from './addToQuantity.js';
 import subtractFromQuantity from './subtractFromQuantity.js'
-import showOneProduct from './showOneProduct.js'
 
 let array = [];
 
 //element.parentNode.removeChild(element);
-const renderProducts = () => {
-    let quantity = []
+const renderProducts = (productId) => {
+    let quantity = [];
+    quantity[productId] = 0
     let i = 0
     let cartId = 0;
-    let cart=[];
+    let cart = [];
+    console.log(productId)
+    document.getElementById('enableButton').innerHTML = "";
+    document.getElementById('productCards').innerHTML = "";
+    document.getElementById('newProduct').innerHTML = "";
+    document.getElementById('oneProduct').innerHTML = "";
 
-    document.getElementById('enableButton').innerHTML="";
-    document.getElementById('productCards').innerHTML="";
-    document.getElementById('newProduct').innerHTML="";
-    document.getElementById('oneProduct').innerHTML="";
+    const productRoute = `http://localhost:8080/api/productos/${productId}`
 
-    fetch('http://localhost:8080/api/productos')
+    console.log(productRoute);
+
+    fetch(productRoute)
         .then(res => res.json())
         .then(data => {
-            console.log(data.bool);
+            let product = data.product
+            const cardContainer = document.getElementById('oneProduct')
 
-            document.getElementById('productCards').innerHTML = "";
-
-            const cardContainer = document.getElementById('productCards')
-
-            for (let product of data.products) {
-                array.push(product)
-                quantity[product.id] = 0;
                 const cards = document.createElement('div');
 
                 cards.setAttribute('class', 'flex-container-card')
@@ -68,9 +66,9 @@ const renderProducts = () => {
                                                 id=D${product.id}
                                                 class="btn btn-danger">
                                                     Eliminacion de Producto
-                                        </button>`;  
+                                        </button>`;
 
-                    cardButtons.appendChild(buttons)                    
+                    cardButtons.appendChild(buttons)
 
                     let productId = `U${product.id}`
 
@@ -88,7 +86,7 @@ const renderProducts = () => {
 
                     formDeleteProduct.addEventListener('click', function () {
 
-                        renderModalDeleteProduct(product, quantity[product.id]);
+                        renderModalDeleteProduct(product, quantity[productId]);
 
                     })
 
@@ -128,11 +126,11 @@ const renderProducts = () => {
 
                     addProductToCart.addEventListener('click', function () {
 
-                        if (cartId === 0){
+                        if (cartId === 0) {
                             cart = modalCreateCart();
                         }
 
-                        renderModalAddToCart(product,quantity[product.id],cart);
+                        renderModalAddToCart(product, quantity[product.id], cart);
 
                     })
 
@@ -144,10 +142,10 @@ const renderProducts = () => {
 
                     deleteProductFromCart.addEventListener('click', function () {
 
-                        if (cartId === 0){
+                        if (cartId === 0) {
                             alert(`Aun no se ha habilitado ningun carrito`);
                         } else {
-                            renderModalDeleteFromCart(productId,cartId);
+                            renderModalDeleteFromCart(productId, cartId);
                         }
                     })
 
@@ -171,17 +169,6 @@ const renderProducts = () => {
                     })
 
                 }
-                    let showOneProductId = `${product.id}`
-
-                    let oneProduct = document.getElementById(showOneProductId);
-
-                    oneProduct.addEventListener('click', function () {
-
-                        showOneProduct(showOneProductId);
-
-                    })
-
-            }
         })
         .catch(err => console.log(err))
 }

@@ -2,6 +2,8 @@ const renderNewProductForm = () => {
     document.getElementById('enableButton').innerHTML="";
     document.getElementById('productCards').innerHTML="";
     document.getElementById('newProduct').innerHTML="";
+    document.getElementById('oneProduct').innerHTML="";
+
     const newProduct = document.getElementById('newProduct');
     const productForm = document.createElement('div');
     productForm.setAttribute('class', 'jumbotron');
