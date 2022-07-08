@@ -1,6 +1,6 @@
-const deleteOneProduct = (productId) => {
+const deleteCart = (cartId) => {
     console.log(productId)
-    const productRoute = `http://localhost:8080/api/productos/${productId}`
+    const productRoute = `http://localhost:8080/api/carrito/${cartId}`
 
     console.log(productRoute);
 
@@ -19,4 +19,4 @@ const deleteOneProduct = (productId) => {
         .catch(err => console.log(err))
 }
 
-export default deleteOneProduct;
+export default deleteCart;
