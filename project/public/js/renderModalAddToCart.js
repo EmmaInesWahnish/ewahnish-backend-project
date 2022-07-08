@@ -1,4 +1,4 @@
-const renderModalAddToCart = (product, quantity, cart) => {
+const renderModalAddToCart = (product, quantity, cartId) => {
     let cartProduct = {
         id: product.id,
         timestamp: product.timestamp,
@@ -11,7 +11,6 @@ const renderModalAddToCart = (product, quantity, cart) => {
         cantidad: quantity
     }
 
-    alert(`Aqui se agregaría el producto ${cartProduct.id} al carrito con id ${cart.id}`);
 
 }
 

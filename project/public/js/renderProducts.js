@@ -2,7 +2,7 @@ import renderModalModifyProduct from './renderModalModifyProduct.js';
 import renderModalDeleteProduct from './renderModalDeleteProduct.js';
 import renderModalAddToCart from './renderModalAddToCart.js';
 import renderModalDeleteFromCart from './renderModalDeleteFromCart.js';
-import modalCreateCart from './modalCreateCart.js'
+import createACart from './createACart.js';
 import addToQuantity from './addToQuantity.js';
 import subtractFromQuantity from './subtractFromQuantity.js'
 import showOneProduct from './showOneProduct.js'
@@ -14,12 +14,12 @@ const renderProducts = () => {
     let quantity = []
     let i = 0
     let cartId = 0;
-    let cart=[];
+    let cart = [];
 
-    document.getElementById('enableButton').innerHTML="";
-    document.getElementById('productCards').innerHTML="";
-    document.getElementById('newProduct').innerHTML="";
-    document.getElementById('oneProduct').innerHTML="";
+    document.getElementById('enableButton').innerHTML = "";
+    document.getElementById('productCards').innerHTML = "";
+    document.getElementById('newProduct').innerHTML = "";
+    document.getElementById('oneProduct').innerHTML = "";
 
     fetch('http://localhost:8080/api/productos')
         .then(res => res.json())
@@ -33,7 +33,7 @@ const renderProducts = () => {
             for (let product of data.products) {
                 array.push(product)
                 quantity[product.id] = 0;
-                let pictureId = "PIC"+product.id;
+                let pictureId = "PIC" + product.id;
                 const cards = document.createElement('div');
 
                 cards.setAttribute('class', 'flex-container-card')
@@ -69,9 +69,9 @@ const renderProducts = () => {
                                                 id=D${product.id}
                                                 class="btn btn-danger">
                                                     Eliminacion de Producto
-                                        </button>`;  
+                                        </button>`;
 
-                    cardButtons.appendChild(buttons)                    
+                    cardButtons.appendChild(buttons)
 
                     let productId = `U${product.id}`
 
@@ -128,12 +128,19 @@ const renderProducts = () => {
                     let addProductToCart = document.getElementById(mButtonId);
 
                     addProductToCart.addEventListener('click', function () {
+            
+                        if (cartId === 0) {
 
-                        if (cartId === 0){
-                            cart = modalCreateCart();
+                            let cart = {
+                                id: cartId,
+                                timestamp: Date.now(),
+                                productos: [],
+                            }
+                            cartId = createACart(cart);
+
                         }
 
-                        renderModalAddToCart(product,quantity[product.id],cart);
+                        renderModalAddToCart(product, quantity[product.id], cartId);
 
                     })
 
@@ -145,10 +152,10 @@ const renderProducts = () => {
 
                     deleteProductFromCart.addEventListener('click', function () {
 
-                        if (cartId === 0){
+                        if (cartId === 0) {
                             alert(`Aun no se ha habilitado ningun carrito`);
                         } else {
-                            renderModalDeleteFromCart(productId,cartId);
+                            renderModalDeleteFromCart(productId, cartId);
                         }
                     })
 
@@ -172,15 +179,15 @@ const renderProducts = () => {
                     })
 
                 }
-                    let showOneProductId = `${pictureId}`
+                let showOneProductId = `${pictureId}`
 
-                    let oneProduct = document.getElementById(showOneProductId);
+                let oneProduct = document.getElementById(showOneProductId);
 
-                    oneProduct.addEventListener('click', function () {
+                oneProduct.addEventListener('click', function () {
 
-                        showOneProduct(product.id);
+                    showOneProduct(product.id);
 
-                    })
+                })
 
             }
         })

@@ -3,7 +3,6 @@ import AnyContainer from "../api/Container.js";
 
 const routerCart = express.Router();
 const Cart = new AnyContainer('./files/carrito.txt');
-const Product = new AnyContainer('./files/productos.txt')
 // *** ROUTES ***
 //This route returns all carts
 routerCart.get('/', async (req, res) => {
@@ -28,6 +27,7 @@ routerCart.get('/:id', async (req, res) => {
             if (carrito != undefined) {
                 res.json({
                     message: 'carrito encontrado',
+                    id: carrito.id,
                     timestamp: carrito.timestamp,
                     productos: carrito.productos
                 })
@@ -54,30 +54,29 @@ routerCart.get('/:id', async (req, res) => {
 routerCart.post('/', async (req, res) => {
     let receive = req.body;
     let carrito = [{
-        timestamp: Date.now(),
-        productos: [],
+        timestamp: receive.timestamp,
+        productos: receive.productos,
     }]
-    console.log(carrito)
     if (carrito) {
         try {
             await Cart.saveArray(carrito);
             try {
-                const Cart = await Cart.getAll();
+                const carrito = await Cart.getAll();
                 res.json({
-                    message: "carrito incorporado",
-                    product: carrito
+                    message: "Carrito incorporado",
+                    carrito: carrito,
                 })
             }
             catch (error) {
                 res.json({
-                    message: 'No se ha podido obtener la lista de carritos',
+                    message: 'No se ha podido obtener la lista de productos',
                     error: error
                 })
             }
         }
         catch (error) {
             res.json({
-                message: 'No se ha podido guardar el carrito',
+                message: 'No se ha podido guardar el producto',
                 error: error
             })
         }
@@ -86,6 +85,7 @@ routerCart.post('/', async (req, res) => {
             message: "Los datos suministrados son incorrectos"
         })
     }
+
 })
 
 //This route updates the cart with the selected id
@@ -116,7 +116,7 @@ routerCart.post('/:id/productos', async (req, res) => {
                 newProduct.stock = receive.stock;
                 newProduct.cantidad = receive.cantidad;
             }
-        
+
             Cart.productos.push(newProduct);
 
             //The array gets updated here
@@ -194,7 +194,7 @@ routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
                 newProduct.stock = receive.stock;
                 newProduct.cantidad = receive.cantidad;
             }
-        
+
             Cart.productos.push(newProduct);
 
             //The array gets updated here
