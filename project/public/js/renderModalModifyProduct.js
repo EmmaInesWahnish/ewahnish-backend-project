@@ -1,3 +1,4 @@
+import modifyOneProduct from './modifyOneProduct.js'
 const renderModalModifyProduct = (product) => {
   //console.log(product)
   let buttonId = "SM" + product.id;
@@ -12,7 +13,7 @@ const renderModalModifyProduct = (product) => {
 
       <div class="form-group">
         <label for="nombre"><b>Nombre</b></label>
-        <input id="name" class="form-control" type="text" name="nombre" >
+        <input id="nomb" class="form-control" type="text" name="nombre" >
       </div>
 
       <div class="form-group">
@@ -42,24 +43,35 @@ const renderModalModifyProduct = (product) => {
 
       <button type="submit" id=${buttonId} class="btn btn-success">Enviar</button>`;
 
-  document.getElementById("name").value = product.nombre;
+  document.getElementById("nomb").value = product.nombre;
   document.getElementById("desc").value = product.descripcion;
   document.getElementById("code").value = product.codigo;
   document.getElementById("photo").value = product.foto;
   document.getElementById("price").value = product.precio;
   document.getElementById("quantity").value = product.stock;
 
+  nomb.addEventListener('change', function () {
+    product.nombre = document.getElementById("nomb");
+  })
+  desc.addEventListener('change', function () {
+    product.descripcion = document.getElementById("desc").value;
+  })
+  code.addEventListener('change', function () {
+    product.codigo = document.getElementById("code").value;
+  })
+  photo.addEventListener('change', function () {
+    product.foto = document.getElementById("photo").value;
+  })
+  price.addEventListener('change', function () {
+    product.precio = document.getElementById("price").value;
+  })
+  quantity.addEventListener('change', function () {
+    product.stock = document.getElementById("quantity").value;
+  })
+
   let formUpdate = document.getElementById(buttonId);
 
   formUpdate.addEventListener('click', function () {
-
-    product.nombre = document.getElementById("name");
-    product.description = document.getElementById("desc").value;
-    product.codigo = document.getElementById("code").value;
-    product.foto = document.getElementById("photo").value;
-    product.precio = document.getElementById("price").value;
-    product.stock = document.getElementById("quantity").value;
-
     let modifiedProduct = {
       id: product.id,
       timestamp: product.timestamp,
@@ -69,9 +81,10 @@ const renderModalModifyProduct = (product) => {
       foto: product.foto,
       precio: product.precio,
       stock: product.stock,
-  }
+    }
 
-  
+    modifyOneProduct(modifiedProduct);
+
     document.getElementById('modal').style.display = 'none';
   })
 

@@ -113,6 +113,7 @@ routerProducts.post('/', async (req, res) => {
 routerProducts.put('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
     let receive = req.body;
+    console.log(receive)
     let searchedProduct = {};
     console.log("The id ", id, "receive  ", receive)
     try {
@@ -159,9 +160,9 @@ routerProducts.put('/:id', async (req, res) => {
 
             //productos.txt file is replaced with the updated array
             try {
-                await fs.promises.unlink('./src/files/productos.txt');
+                await fs.promises.unlink('./files/productos.txt');
                 try {
-                    await Products.save(array);
+                    await Products.saveArray(array);
                     res.json({
                         message: 'Modificacion exitosa',
                         product: array
