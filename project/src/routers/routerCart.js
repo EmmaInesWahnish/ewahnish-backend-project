@@ -108,7 +108,7 @@ routerCart.post('/:id/productos', async (req, res) => {
             } else {
                 newProduct.id = receive.producto.id;
                 newProduct.timestamp = receive.producto.timestamp;
-                newProduct.nombre = receive.pronombre;
+                newProduct.nombre = receive.nombre;
                 newProduct.descripcion = receive.descripcion;
                 newProduct.codigo = receive.codigo;
                 newProduct.foto = receive.foto;
@@ -186,7 +186,7 @@ routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
             } else {
                 newProduct.id = receive.producto.id;
                 newProduct.timestamp = receive.producto.timestamp;
-                newProduct.nombre = receive.pronombre;
+                newProduct.nombre = receive.nombre;
                 newProduct.descripcion = receive.descripcion;
                 newProduct.codigo = receive.codigo;
                 newProduct.foto = receive.foto;

@@ -1,8 +1,11 @@
+import showOneProduct from './showOneProduct.js';
 const modifyOneProduct = (modifiedProduct) => {
 
     const productRoute = `http://localhost:8080/api/productos/${modifiedProduct.id}`
 
     console.log(productRoute);
+
+    console.log("La modificacion ", modifiedProduct)
 
     const requestOptions = {
         method:'PUT',
@@ -13,8 +16,9 @@ const modifyOneProduct = (modifiedProduct) => {
     fetch(productRoute, requestOptions)
     .then(async res => {
         const data = await res.json();
-        console.log(data);
         alert('Modificación exitosa');
+        let productId = modifiedProduct.id;
+        showOneProduct(productId);
     })
     .catch(error => {
         console.log('Se produjo el siguiente error: ', error);

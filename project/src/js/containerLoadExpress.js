@@ -164,7 +164,7 @@ const products = [
     },
     {
         timestamp: Date.now(),
-        nombre: "Siarra Caladora",
+        nombre: "Sierra Caladora",
         descripcion: "Sierra caladora ingleteadora biselada 420w",
         codigo: "SC-00-01",
         foto: "/images/sierra-caladora.jpeg",

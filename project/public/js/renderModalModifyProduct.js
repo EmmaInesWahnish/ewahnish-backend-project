@@ -1,4 +1,5 @@
-import modifyOneProduct from './modifyOneProduct.js'
+import modifyOneProduct from './modifyOneProduct.js';
+import ModifiedProduct from '../Classes/ModifiedProduct.js';
 const renderModalModifyProduct = (product) => {
   //console.log(product)
   let buttonId = "SM" + product.id;
@@ -18,12 +19,12 @@ const renderModalModifyProduct = (product) => {
 
       <div class="form-group">
         <label for="descripcion"><b>Descripcion</b></label>
-        <input id="desc" class="form-control" type="text" name="descripcion" value=${product.descripcion}>
+        <input id="desc" class="form-control" type="text" name="descripcion">
       </div>
 
       <div class="form-group">
         <label for="codigo"><b>Codigo</b></label>
-        <input id="code" class="form-control" type="text" name="codigo" value=${product.codigo}>
+        <input id="code" class="form-control" type="text" name="codigo">
       </div>
 
       <div class="form-group">
@@ -50,8 +51,15 @@ const renderModalModifyProduct = (product) => {
   document.getElementById("price").value = product.precio;
   document.getElementById("quantity").value = product.stock;
 
+  let nomb = document.getElementById("nomb");
+  let desc = document.getElementById("desc");
+  let code = document.getElementById("code");
+  let photo = document.getElementById("photo");
+  let price = document.getElementById("price");
+  let quantity = document.getElementById("quantity");
+
   nomb.addEventListener('change', function () {
-    product.nombre = document.getElementById("nomb");
+    product.nombre = document.getElementById("nomb").value;
   })
   desc.addEventListener('change', function () {
     product.descripcion = document.getElementById("desc").value;
@@ -72,17 +80,18 @@ const renderModalModifyProduct = (product) => {
   let formUpdate = document.getElementById(buttonId);
 
   formUpdate.addEventListener('click', function () {
-    let modifiedProduct = {
-      id: product.id,
-      timestamp: product.timestamp,
-      nombre: product.nombre,
-      descripcion: product.descripcion,
-      codigo: product.codigo,
-      foto: product.foto,
-      precio: product.precio,
-      stock: product.stock,
-    }
-
+    const modifiedProduct = new ModifiedProduct();
+    modifiedProduct.id = product.id;
+    modifiedProduct.timestamp = product.timestamp;
+    modifiedProduct.nombre = product.nombre;
+    modifiedProduct.descripcion = product.descripcion;
+    modifiedProduct.codigo = product.codigo;
+    modifiedProduct.foto = product.foto;
+    modifiedProduct.precio = product.precio;
+    modifiedProduct.stock = product.stock,
+    
+    console.log("Antes de salir ", modifiedProduct);
+    
     modifyOneProduct(modifiedProduct);
 
     document.getElementById('modal').style.display = 'none';

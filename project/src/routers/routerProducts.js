@@ -84,7 +84,7 @@ routerProducts.post('/', async (req, res) => {
                     res.json({
                         message: "Producto incorporado",
                         product: producto,
-                        bool: isAdmin
+                        bool: isAdmin,
                     })
                 }
                 catch (error) {
@@ -113,14 +113,13 @@ routerProducts.post('/', async (req, res) => {
 routerProducts.put('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
     let receive = req.body;
-    console.log(receive)
     let searchedProduct = {};
     console.log("The id ", id, "receive  ", receive)
     try {
         const products = await Products.getAll();
         const index = products.findIndex(element => element.id === id);
         searchedProduct = products[index];
-        console.log(index, " Modifico ", searchedProduct);
+        console.log(index, " product.nombre ", receive.nombre);
         if (index !== -1) {
 
             if (receive.nombre !== null && receive.nombre !== undefined) {
