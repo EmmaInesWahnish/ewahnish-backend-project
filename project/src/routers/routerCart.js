@@ -112,6 +112,7 @@ routerCart.post('/:id/productos', async (req, res) => {
             indexp = productArray.findIndex(element => element.id === receive.id);
             if (indexp !== -1) {
                 carts[indexc].productos[indexp].cantidad = carts[indexc].productos[indexp].cantidad + receive.cantidad;
+                modifiedProduct = carts[indexc];
             }
             else {
                 productArray.push(receive);
@@ -120,8 +121,6 @@ routerCart.post('/:id/productos', async (req, res) => {
                     timestamp: cartTimestamp,
                     productos: productArray
                 }
-                console.log("receive .2 ", receive);
-                console.log("carritos .3 ", modifiedCart);
             }
             try {
                 console.log("llegue aca y mando ", modifiedCart)
