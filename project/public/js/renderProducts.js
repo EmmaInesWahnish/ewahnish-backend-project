@@ -16,7 +16,7 @@ const renderProducts = () => {
     let cartId = 0;
     let cart = [];
 
-    document.getElementById('enableButton').innerHTML = "";
+    document.getElementById('activeCart').innerHTML = "";
     document.getElementById('productCards').innerHTML = "";
     document.getElementById('newProduct').innerHTML = "";
     document.getElementById('oneProduct').innerHTML = "";
@@ -94,6 +94,11 @@ const renderProducts = () => {
                     })
 
                 } else {
+
+                    let activeCart = document.getElementById("activeCart")
+
+                    activeCart.innerHTML = `No hay carrito activo<br>`       
+
                     buttons.innerHTML = `<div class="flex-container-buttons  p-0 m-0" style="width:250px">
                                             <button id=A${product.id}
                                                     class="btn btn-xs btn-light">
@@ -132,7 +137,6 @@ const renderProducts = () => {
                         if (cartId === 0) {
 
                             let cart = {
-                                id: cartId,
                                 timestamp: Date.now(),
                                 productos: [],
                             }

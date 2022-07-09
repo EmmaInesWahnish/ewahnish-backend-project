@@ -62,9 +62,11 @@ routerCart.post('/', async (req, res) => {
             await Cart.saveArray(carrito);
             try {
                 const carrito = await Cart.getAll();
+                const cartId = carrito[carrito.length -1].id;
                 res.json({
                     message: "Carrito incorporado",
                     carrito: carrito,
+                    cartId: cartId
                 })
             }
             catch (error) {

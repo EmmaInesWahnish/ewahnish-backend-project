@@ -14,9 +14,13 @@ const createACart = (cart) => {
     .then(async res => {
         const data = await res.json();
         console.log(data);
+        cartId = data.cartId;
+        document.getElementById('activeCart').innerHTML = "";
+        document.getElementById('activeCart').innerHTML = `Carrito Activo = ${cartId}<br>`;
+        return cartId;
     })
     .catch(error => {
-        console.log('Se produjo el siguiente error: ', error);
+        console.log('Se produjo el siguiente error: ', error);    
     })
     
 }
