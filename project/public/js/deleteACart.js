@@ -1,5 +1,5 @@
-const deleteCart = (cartId) => {
-    console.log(productId)
+const deleteACart = (cartId) => {
+    console.log(cartId)
     const productRoute = `http://localhost:8080/api/carrito/${cartId}`
 
     console.log(productRoute);
@@ -11,12 +11,11 @@ const deleteCart = (cartId) => {
         }
     })
         .then(async res => {
-            
-            const data = await res.json();
-            console.log(data);
-        
+
+            await res.json();
+
         })
         .catch(err => console.log(err))
 }
 
-export default deleteCart;
+export default deleteACart;

@@ -64,11 +64,11 @@ class AnyContainer {
             if (whichId !== -1) {
                 let removedObject = [];
                 removedObject = elements.splice(whichId, 1);
-                console.log("Deleted product ", removedObject);
+                console.log("Deleted item ", removedObject);
                 await fs.promises.writeFile(this.anyFile, JSON.stringify(elements, null, 3))
                 return removedObject;    
             } else {
-                console.log("There is no product with id ", findId);
+                console.log("There is no item with id ", findId);
                 return []
             }
         } catch (error) {
