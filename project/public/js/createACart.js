@@ -17,7 +17,9 @@ const createACart = (cart,quantity, product) => {
         console.log(data);
         cartId = data.cartId;
         document.getElementById('activeCart').innerHTML = "";
-        document.getElementById('activeCart').innerHTML = `Carrito Activo = ${cartId}<br>`;
+        document.getElementById('activeCart').innerHTML = `Carrito Activo = `;
+        document.getElementById('cartNumber').innerHTML = "";
+        document.getElementById('cartNumber').innerHTML = `${cartId}`;
         renderModalAddToCart(product, quantity, cartId);
         return cartId;
     })

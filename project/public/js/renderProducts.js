@@ -17,6 +17,7 @@ const renderProducts = () => {
     let cart = [];
 
     document.getElementById('activeCart').innerHTML = "";
+    document.getElementById('cartNumber').innerHTML = "";
     document.getElementById('productCards').innerHTML = "";
     document.getElementById('newProduct').innerHTML = "";
     document.getElementById('oneProduct').innerHTML = "";
@@ -97,7 +98,7 @@ const renderProducts = () => {
 
                     let activeCart = document.getElementById("activeCart")
 
-                    activeCart.innerHTML = `No hay carrito activo<br>`       
+                    activeCart.innerHTML = `No hay carrito activo`
 
                     buttons.innerHTML = `<div class="flex-container-buttons  p-0 m-0" style="width:250px">
                                             <button id=A${product.id}
@@ -128,19 +129,25 @@ const renderProducts = () => {
 
                     cardButtons.appendChild(buttons)
 
+                    let cartNumber = document.getElementById("cartNumber")
+
                     let mButtonId = `M${product.id}`
 
                     let addProductToCart = document.getElementById(mButtonId);
 
                     addProductToCart.addEventListener('click', function () {
-            
+
                         if (cartId === 0) {
 
                             let cart = {
                                 timestamp: Date.now(),
                                 productos: [],
                             }
-                            cartId = createACart(cart, quantity[product.id],product);
+                            cartId = createACart(cart, quantity[product.id], product);
+
+                            let cartNumber = document.getElementById("cartNumber")
+
+                            let cartId2 = Number(cartNumber.innerText)
 
                         }
 
@@ -150,16 +157,18 @@ const renderProducts = () => {
 
                     let dButtonId = `C${product.id}`
 
-                    let productId = `${product.id}`
+                    let productId = Number(`${product.id}`)
 
                     let deleteProductFromCart = document.getElementById(dButtonId);
 
                     deleteProductFromCart.addEventListener('click', function () {
 
-                        if (cartId === 0) {
+                        let cartId2 = Number(cartNumber.innerText)
+
+                        if (cartId2 === 0) {
                             alert(`Aun no se ha habilitado ningun carrito`);
                         } else {
-                            renderModalDeleteFromCart(productId, cartId);
+                            renderModalDeleteFromCart(productId, cartId2);
                         }
                     })
 

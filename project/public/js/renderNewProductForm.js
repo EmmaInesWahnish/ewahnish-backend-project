@@ -1,10 +1,12 @@
 import addOneProduct from './addOneProduct.js'
 let product = {};
 const renderNewProductForm = () => {
-    document.getElementById('activeCart').innerHTML="";
-    document.getElementById('productCards').innerHTML="";
-    document.getElementById('newProduct').innerHTML="";
-    document.getElementById('oneProduct').innerHTML="";
+
+    document.getElementById('activeCart').innerHTML = "";
+    document.getElementById('cartNumber').innerHTML = "";
+    document.getElementById('productCards').innerHTML = "";
+    document.getElementById('newProduct').innerHTML = "";
+    document.getElementById('oneProduct').innerHTML = "";
 
     const newProduct = document.getElementById('newProduct');
     const productForm = document.createElement('div');

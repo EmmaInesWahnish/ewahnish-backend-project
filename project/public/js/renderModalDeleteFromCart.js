@@ -1,7 +1,21 @@
 const renderModalDeleteFromCart = (productId, cartId) => {
+    const productRoute = `http://localhost:8080/api/carrito/${cartId}/productos/${productId}`
 
-    alert(`Aqui se eliminaría el producto con id ${productId} del carrito con id ${cartId}`)
+    console.log(productRoute);
 
+    fetch(productRoute, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(async res => {
+            
+            const data = await res.json();
+            console.log(data);
+        
+        })
+        .catch(err => console.log(err))
 }
 
 export default renderModalDeleteFromCart;

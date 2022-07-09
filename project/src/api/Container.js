@@ -68,7 +68,7 @@ class AnyContainer {
                 await fs.promises.writeFile(this.anyFile, JSON.stringify(elements, null, 3))
                 return removedObject;    
             } else {
-                console.log("There is no item with id ", findId);
+                console.log("There is no item with id ", id);
                 return []
             }
         } catch (error) {

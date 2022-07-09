@@ -2,11 +2,9 @@
 const renderProducts = (productId) => {
     let quantity = [];
     quantity[productId] = 0
-    let i = 0
-    let cartId = 0;
-    let cart = [];
-    console.log(productId)
-    document.getElementById('enableButton').innerHTML = "";
+
+    document.getElementById('activeCart').innerHTML = "";
+    document.getElementById('cartNumber').innerHTML = "";
     document.getElementById('productCards').innerHTML = "";
     document.getElementById('newProduct').innerHTML = "";
     document.getElementById('oneProduct').innerHTML = "";
