@@ -154,79 +154,41 @@ routerCart.post('/:id/productos', async (req, res) => {
 routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
     const id = parseInt(req.params.id);
     const id_prod = parseInt(req.params.id_prod)
-    let receive = req.body;
-    let searchedProduct = {};
-    console.log("The id ", id, "receive  ", receive)
     try {
-        const Cart = await Cart.getAll();
-        const indexc = Cart.findIndex(element => element.id === id);
-        searchedCart = Cart[indexc];
-        console.log(indexc, "  ", searchedProduct);
+        const carts = await Cart.getAll();
+        const indexc = carts.findIndex(element => element.id === id);
+        const searchedCart = carts[indexc];
+        const productArray = searchedCart.productos;
+        console.log("Productos .1 ", productArray)
         if (indexc !== -1) {
-            console.log("No es index -1")
-            const theLength = searchedCart.productos.length
-            if (theLength > 0) {
-                const indexp = searchedCart.productos.findindex(element => element.id === receive.id);
-                Cart[indexc].productos[indexp].cantidad = Cart[indexc].productos[indexp].cantidad + receive.cantidad;
-            } else {
-                console.log("Estoy en nuevo")
-                newProduct.id = receive.producto.id;
-                newProduct.timestamp = receive.producto.timestamp;
-                newProduct.nombre = receive.nombre;
-                newProduct.descripcion = receive.descripcion;
-                newProduct.codigo = receive.codigo;
-                newProduct.foto = receive.foto;
-                newProduct.precio = receive.precio;
-                newProduct.stock = receive.stock;
-                newProduct.cantidad = receive.cantidad;
-            }
-
-            Cart.productos.push(newProduct);
-
-            //The array gets updated here
-            let array = [];
-
-            Cart.forEach((element) => {
-                array.push({
-                    timestamp: element.timestamp,
-                    productos: element.productos,
-                })
-            })
-
-            //carrito.txt file is replaced with the updated array
-            try {
-                await fs.promises.unlink('./src/files/carrito.txt');
+            const indexp = productArray.findIndex(element => element.id === id_prod);
+            if (indexp !== -1) {
                 try {
-                    await Cart.save(array);
+                    console.log("llegue aca y mando ", id, id_prod)
+                    await Cart.deleteProdById(id, id_prod);
                     res.json({
-                        message: 'Modificacion exitosa',
-                        product: array
+                        message: 'Eliminacion exitosa',
                     })
                 }
                 catch (error) {
                     res.json({
-                        message: 'No fue posible cargar los carritos en Cart.txt',
+                        message: 'No fue posible eliminar el producto del carrito',
                         error: error
                     })
-                }
-            }
-            catch (error) {
+                }                   
+
+            } else {
                 res.json({
-                    message: 'No se pudo borrar el archivo carrito.txt',
-                    error: error
+                    message: 'el producto no se encuentra en el carrito'
                 })
             }
-        } else {
             res.json({
                 message: 'carrito no encontrado'
             })
         }
     }
     catch (error) {
-        res.json({
-            message: 'Ha ocurrido un error al intentar recuperar la lista de carritos',
-            error: error
-        })
+
     }
 
 })
@@ -234,7 +196,6 @@ routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
 //This route removes the cart with the selected id
 routerCart.delete('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
-    console.log(id);
     if (!isNaN(id)) {
         try {
             const removedCart = await Cart.deleteById(id);

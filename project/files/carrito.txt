@@ -1,21 +1,5 @@
 [
-   {
-      "id": 1,
-      "timestamp": 1657374162189,
-      "productos": [
-         {
-            "id": 2,
-            "timestamp": 1656710054455,
-            "nombre": "Maquina de Pintar",
-            "descripcion": "Maquina de pintar con compresor",
-            "codigo": "NN-00-01",
-            "foto": "/images/maquina-de-pintar.jpeg",
-            "precio": 5880,
-            "stock": 50,
-            "cantidad": 2
-         }
-      ]
-   },
+   [],
    {
       "id": 2,
       "timestamp": 1657375554401,
@@ -117,6 +101,17 @@
             "foto": "/images/baliza-giratoria.jpeg",
             "precio": 1390,
             "stock": 50,
+            "cantidad": 1
+         },
+         {
+            "id": 18,
+            "timestamp": 1656710054455,
+            "nombre": "Sopladora",
+            "descripcion": "Sopladora Luqstoff",
+            "codigo": "SO-00-01",
+            "foto": "/images/sopladora.jpeg",
+            "precio": 10987,
+            "stock": 100,
             "cantidad": 1
          }
       ]
@@ -300,5 +295,110 @@
             "cantidad": 1
          }
       ]
+   },
+   {
+      "id": 15,
+      "timestamp": 1657403003552,
+      "productos": [
+         {
+            "id": 5,
+            "timestamp": 1656710054455,
+            "nombre": "Caja de herramientas",
+            "descripcion": "Caja de herramientas Carro 47 x 27",
+            "codigo": "CH-00-01",
+            "foto": "/images/caja-herramientas-carro.jpeg",
+            "precio": 4670,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "timestamp": 1657403295938,
+      "productos": [],
+      "id": 16
+   },
+   {
+      "id": 17,
+      "timestamp": 1657403342678,
+      "productos": [
+         {
+            "id": 18,
+            "timestamp": 1656710054455,
+            "nombre": "Sopladora",
+            "descripcion": "Sopladora Luqstoff",
+            "codigo": "SO-00-01",
+            "foto": "/images/sopladora.jpeg",
+            "precio": 10987,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 18,
+      "timestamp": 1657404885653,
+      "productos": [
+         {
+            "id": 5,
+            "timestamp": 1656710054455,
+            "nombre": "Caja de herramientas",
+            "descripcion": "Caja de herramientas Carro 47 x 27",
+            "codigo": "CH-00-01",
+            "foto": "/images/caja-herramientas-carro.jpeg",
+            "precio": 4670,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 19,
+      "timestamp": 1657405182963,
+      "productos": [
+         {
+            "id": 2,
+            "timestamp": 1656710054455,
+            "nombre": "Maquina de Pintar",
+            "descripcion": "Maquina de pintar con compresor",
+            "codigo": "NN-00-01",
+            "foto": "/images/maquina-de-pintar.jpeg",
+            "precio": 5880,
+            "stock": 50,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 20,
+      "timestamp": 1657405258754,
+      "productos": [
+         {
+            "id": 3,
+            "timestamp": 1656710054455,
+            "nombre": "Llaves combinadas",
+            "descripcion": "Llaves combinadas acodadas marca Hamilton",
+            "codigo": "LC-00-01",
+            "foto": "/images/llaves-combinadas.jpeg",
+            "precio": 10120,
+            "stock": 30,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 21,
+      "timestamp": 1657406971690,
+      "productos": []
+   },
+   {
+      "id": 22,
+      "timestamp": 1657407370846,
+      "productos": []
+   },
+   {
+      "id": 23,
+      "timestamp": 1657407425273,
+      "productos": []
    }
 ]
