@@ -62,7 +62,7 @@ routerCart.post('/', async (req, res) => {
             await Cart.saveArray(carrito);
             try {
                 const carrito = await Cart.getAll();
-                const cartId = carrito[carrito.length -1].id;
+                const cartId = carrito[carrito.length - 1].id;
                 res.json({
                     message: "Carrito incorporado",
                     carrito: carrito,
@@ -94,69 +94,53 @@ routerCart.post('/', async (req, res) => {
 //A product is added to the cart with id :id
 routerCart.post('/:id/productos', async (req, res) => {
     const id = parseInt(req.params.id);
+    let indexc = 0
+    let indexp = 0
     let receive = req.body;
-    let searchedProduct = {};
-    console.log("The id ", id, "receive  ", receive)
+    let searchedCart = [];
+    let carts = [];
+    let modifiedCart = [];
     try {
-        const Cart = await Cart.getAll();
-        const indexc = Cart.findIndex(element => element.id === id);
-        searchedCart = Cart[indexc];
-        console.log(indexc, " Modifico ", searchedProduct);
+        carts = await Cart.getAll();
+        indexc = carts.findIndex(element => element.id === id);
         if (indexc !== -1) {
-            const theLength = searchedCart.productos.length
-            if (theLength > 0) {
-                const indexp = searchedCart.productos.findindex(element => element.id === receive.id);
-                Cart[indexc].productos[indexp].cantidad = Cart[indexc].productos[indexp].cantidad + receive.cantidad;
-            } else {
-                newProduct.id = receive.producto.id;
-                newProduct.timestamp = receive.producto.timestamp;
-                newProduct.nombre = receive.nombre;
-                newProduct.descripcion = receive.descripcion;
-                newProduct.codigo = receive.codigo;
-                newProduct.foto = receive.foto;
-                newProduct.precio = receive.precio;
-                newProduct.stock = receive.stock;
-                newProduct.cantidad = receive.cantidad;
+            searchedCart = carts[indexc];
+            let cartId = searchedCart.id;
+            let cartTimestamp = searchedCart.timestamp;
+            const productArray = searchedCart.productos;
+            console.log("Productos .1 ", productArray)
+            indexp = productArray.findIndex(element => element.id === receive.id);
+            if (indexp !== -1) {
+                carts[indexc].productos[indexp].cantidad = carts[indexc].productos[indexp].cantidad + receive.cantidad;
             }
-
-            Cart.productos.push(newProduct);
-
-            //The array gets updated here
-            let array = [];
-
-            Cart.forEach((element) => {
-                array.push({
-                    timestamp: element.timestamp,
-                    productos: element.productos,
-                })
-            })
-
-            //carrito.txt file is replaced with the updated array
+            else {
+                productArray.push(receive);
+                modifiedCart = {
+                    id: cartId,
+                    timestamp: cartTimestamp,
+                    productos: productArray
+                }
+                console.log("receive .2 ", receive);
+                console.log("carritos .3 ", modifiedCart);
+            }
             try {
-                await fs.promises.unlink('./src/files/carrito.txt');
-                try {
-                    await Cart.save(array);
-                    res.json({
-                        message: 'Modificacion exitosa',
-                        product: array
-                    })
-                }
-                catch (error) {
-                    res.json({
-                        message: 'No fue posible cargar los carritos en Cart.txt',
-                        error: error
-                    })
-                }
+                console.log("llegue aca y mando ", modifiedCart)
+                await Cart.modifyById(cartId, modifiedCart);
+                res.json({
+                    message: 'Modificacion exitosa',
+                    product: modifiedCart
+                })
             }
             catch (error) {
                 res.json({
-                    message: 'No se pudo borrar el archivo carrito.txt',
+                    message: 'No fue posible cargar los productos en productos.txt',
                     error: error
                 })
             }
-        } else {
+        }
+        else {
             res.json({
-                message: 'carrito no encontrado'
+                message: 'Carrito no encontrado',
             })
         }
     }
@@ -166,7 +150,6 @@ routerCart.post('/:id/productos', async (req, res) => {
             error: error
         })
     }
-
 })
 
 routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
@@ -181,11 +164,13 @@ routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
         searchedCart = Cart[indexc];
         console.log(indexc, "  ", searchedProduct);
         if (indexc !== -1) {
+            console.log("No es index -1")
             const theLength = searchedCart.productos.length
             if (theLength > 0) {
                 const indexp = searchedCart.productos.findindex(element => element.id === receive.id);
                 Cart[indexc].productos[indexp].cantidad = Cart[indexc].productos[indexp].cantidad + receive.cantidad;
             } else {
+                console.log("Estoy en nuevo")
                 newProduct.id = receive.producto.id;
                 newProduct.timestamp = receive.producto.timestamp;
                 newProduct.nombre = receive.nombre;

@@ -75,6 +75,26 @@ class AnyContainer {
             console.log(error)
         }
     }
+    async modifyById(id, item) {
+        console.log("Llegaron ",id," ",item)
+        try {
+            const elements = await this.getAll()
+
+            const whichId = elements.findIndex(element => element.id === id);
+
+            if (whichId !== -1) {
+                let modifiedObject = elements.splice(whichId, 1, item);
+                console.log("Modified item ", modifiedObject);
+                await fs.promises.writeFile(this.anyFile, JSON.stringify(elements, null, 3))
+                return modifiedObject;    
+            } else {
+                console.log("There is no item with id ", findId);
+                return []
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     async deleteAll() {
         try {

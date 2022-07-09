@@ -140,11 +140,11 @@ const renderProducts = () => {
                                 timestamp: Date.now(),
                                 productos: [],
                             }
-                            cartId = createACart(cart);
+                            cartId = createACart(cart, quantity[product.id],product);
 
                         }
 
-                        renderModalAddToCart(product, quantity[product.id], cartId);
+                        renderModalAddToCart(product, quantity[product.id], 2);
 
                     })
 

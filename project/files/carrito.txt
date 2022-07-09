@@ -1,1 +1,19 @@
-[{"timestamp":1657328671980,"productos":[],"id":1},{"timestamp":1657329095751,"productos":[],"id":2},{"timestamp":1657329258569,"productos":[],"id":3},{"timestamp":1657330222198,"productos":[],"id":4},{"timestamp":1657330276782,"productos":[],"id":5},{"timestamp":1657330318812,"productos":[],"id":6},{"timestamp":1657330414581,"productos":[],"id":7},{"timestamp":1657330645249,"productos":[],"id":8},{"timestamp":1657330953530,"productos":[],"id":9}]
+[
+   {
+      "id": 1,
+      "timestamp": 1657374162189,
+      "productos": [
+         {
+            "id": 2,
+            "timestamp": 1656710054455,
+            "nombre": "Maquina de Pintar",
+            "descripcion": "Maquina de pintar con compresor",
+            "codigo": "NN-00-01",
+            "foto": "/images/maquina-de-pintar.jpeg",
+            "precio": 5880,
+            "stock": 50,
+            "cantidad": 2
+         }
+      ]
+   }
+]

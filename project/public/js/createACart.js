@@ -1,4 +1,5 @@
-const createACart = (cart) => {
+import renderModalAddToCart from './renderModalAddToCart.js'
+const createACart = (cart,quantity, product) => {
 
     let cartId 
 
@@ -17,6 +18,7 @@ const createACart = (cart) => {
         cartId = data.cartId;
         document.getElementById('activeCart').innerHTML = "";
         document.getElementById('activeCart').innerHTML = `Carrito Activo = ${cartId}<br>`;
+        renderModalAddToCart(product, quantity, cartId);
         return cartId;
     })
     .catch(error => {

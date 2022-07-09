@@ -1,7 +1,7 @@
 import addOneProduct from './addOneProduct.js'
 let product = {};
 const renderNewProductForm = () => {
-    document.getElementById('enableButton').innerHTML="";
+    document.getElementById('activeCart').innerHTML="";
     document.getElementById('productCards').innerHTML="";
     document.getElementById('newProduct').innerHTML="";
     document.getElementById('oneProduct').innerHTML="";
