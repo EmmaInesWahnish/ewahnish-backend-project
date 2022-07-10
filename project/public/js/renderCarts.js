@@ -1,9 +1,4 @@
 const renderCarts = (cartNumber) => {
-    let quantity = []
-    let i = 0
-    let cartId = 0;
-    let cart = [];
-
     document.getElementById('activeCart').innerHTML = "";
     document.getElementById('cartNumber').innerHTML = "";
     document.getElementById('productCards').innerHTML = "";

@@ -274,33 +274,6 @@
       ]
    },
    {
-      "timestamp": 1657398789864,
-      "productos": [],
-      "id": 11
-   },
-   {
-      "timestamp": 1657399516921,
-      "productos": [],
-      "id": 12
-   },
-   {
-      "id": 13,
-      "timestamp": 1657399609786,
-      "productos": [
-         {
-            "id": 3,
-            "timestamp": 1656710054455,
-            "nombre": "Llaves combinadas",
-            "descripcion": "Llaves combinadas acodadas marca Hamilton",
-            "codigo": "LC-00-01",
-            "foto": "/images/llaves-combinadas.jpeg",
-            "precio": 10120,
-            "stock": 30,
-            "cantidad": 1
-         }
-      ]
-   },
-   {
       "id": 14,
       "timestamp": 1657399844898,
       "productos": [
@@ -333,11 +306,6 @@
             "cantidad": 1
          }
       ]
-   },
-   {
-      "timestamp": 1657403295938,
-      "productos": [],
-      "id": 16
    },
    {
       "id": 17,
@@ -408,21 +376,6 @@
       ]
    },
    {
-      "id": 21,
-      "timestamp": 1657406971690,
-      "productos": []
-   },
-   {
-      "id": 22,
-      "timestamp": 1657407370846,
-      "productos": []
-   },
-   {
-      "id": 23,
-      "timestamp": 1657407425273,
-      "productos": []
-   },
-   {
       "id": 24,
       "timestamp": 1657412075702,
       "productos": [
@@ -455,11 +408,6 @@
             "cantidad": 1
          }
       ]
-   },
-   {
-      "timestamp": 1657416634144,
-      "productos": [],
-      "id": 26
    },
    {
       "id": 27,

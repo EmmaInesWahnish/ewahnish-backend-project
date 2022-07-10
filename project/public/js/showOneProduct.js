@@ -1,4 +1,5 @@
-//element.parentNode.removeChild(element);
+import renderHome from './renderHome.js';
+
 const renderProducts = (productId) => {
     let quantity = [];
     quantity[productId] = 0
@@ -12,7 +13,7 @@ const renderProducts = (productId) => {
     document.getElementById('productsInCart').innerHTML = "";
 
     const homePage = document.getElementById("homePage")
-    
+
     let show = function (elem) {
         elem.style.display = 'block';
     };
@@ -29,8 +30,12 @@ const renderProducts = (productId) => {
     fetch(productRoute)
         .then(res => res.json())
         .then(data => {
-            let product = data.product
-            const cardContainer = document.getElementById('oneProduct')
+            if (data.message === "Producto no encontrado") {
+                alert("Producto no encontrado");
+                renderHome();
+            } else {
+                let product = data.product
+                const cardContainer = document.getElementById('oneProduct')
 
                 const cards = document.createElement('div');
 
@@ -50,7 +55,7 @@ const renderProducts = (productId) => {
                                     <div id=${product.id}></div>`
 
                 cardContainer.appendChild(cards);
-
+            }
         })
         .catch(err => console.log(err))
 }
