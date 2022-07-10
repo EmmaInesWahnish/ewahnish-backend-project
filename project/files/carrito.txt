@@ -112,6 +112,28 @@
             "precio": 10987,
             "stock": 100,
             "cantidad": 1
+         },
+         {
+            "id": 6,
+            "timestamp": 1656710054455,
+            "nombre": "Talladro de banco",
+            "descripcion": "Talladro de banco agujereadora Luqstoff",
+            "codigo": "TB-00-01",
+            "foto": "/images/taladro-banco.jpeg",
+            "precio": 4670,
+            "stock": 100,
+            "cantidad": 1
+         },
+         {
+            "id": 4,
+            "timestamp": 1656710054455,
+            "nombre": "Set de Destornilladores",
+            "descripcion": "Set de destornilladores Bahco",
+            "codigo": "SD-00-01",
+            "foto": "/images/set-destornilladores.jpeg",
+            "precio": 3570,
+            "stock": 150,
+            "cantidad": 1
          }
       ]
    },
@@ -399,5 +421,78 @@
       "id": 23,
       "timestamp": 1657407425273,
       "productos": []
+   },
+   {
+      "id": 24,
+      "timestamp": 1657412075702,
+      "productos": [
+         {
+            "id": 11,
+            "timestamp": 1656710054455,
+            "nombre": "Cargador de bateria",
+            "descripcion": "Cargador de bateria apto para auto moto y cuatriciclo",
+            "codigo": "CB-00-01",
+            "foto": "/images/cargador-bateria.jpeg",
+            "precio": 5100,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 25,
+      "timestamp": 1657412161381,
+      "productos": [
+         {
+            "id": 7,
+            "timestamp": 1656710054455,
+            "nombre": "Cables de Bateria",
+            "descripcion": "Cables de bateria extra gruesos",
+            "codigo": "CB-00-01",
+            "foto": "/images/cable-bateria.jpeg",
+            "precio": 1970,
+            "stock": 400,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "timestamp": 1657416634144,
+      "productos": [],
+      "id": 26
+   },
+   {
+      "id": 27,
+      "timestamp": 1657416653505,
+      "productos": [
+         {
+            "id": 4,
+            "timestamp": 1656710054455,
+            "nombre": "Set de Destornilladores",
+            "descripcion": "Set de destornilladores Bahco",
+            "codigo": "SD-00-01",
+            "foto": "/images/set-destornilladores.jpeg",
+            "precio": 3570,
+            "stock": 150,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 28,
+      "timestamp": 1657417400708,
+      "productos": [
+         {
+            "id": 12,
+            "timestamp": 1656710054455,
+            "nombre": "Cricket Carrito Hidraulico",
+            "descripcion": "Cricket carrito hidraulico 2 toneladas",
+            "codigo": "CC-00-01",
+            "foto": "/images/cricket-carrito.jpeg",
+            "precio": 8400,
+            "stock": 80,
+            "cantidad": 1
+         }
+      ]
    }
 ]

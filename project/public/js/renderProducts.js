@@ -21,6 +21,9 @@ const renderProducts = () => {
     document.getElementById('productCards').innerHTML = "";
     document.getElementById('newProduct').innerHTML = "";
     document.getElementById('oneProduct').innerHTML = "";
+    document.getElementById('myCart').innerText = "";
+    document.getElementById('productsInCart').innerHTML = "";
+
 
     fetch('http://localhost:8080/api/productos')
         .then(res => res.json())
@@ -47,7 +50,7 @@ const renderProducts = () => {
                                         <h3>Precio: ${product.precio}</h3>
                                         <h3>Stock: ${product.stock}</h3>
                                         <div id=${pictureId} class"pictures">
-                                            <img src='${product.foto}'
+                                            <img src='${product.foto}'>
                                         <div>     
                                     </div>
                                     <div id=${product.id}></div>`

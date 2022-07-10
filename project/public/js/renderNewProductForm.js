@@ -7,6 +7,8 @@ const renderNewProductForm = () => {
     document.getElementById('productCards').innerHTML = "";
     document.getElementById('newProduct').innerHTML = "";
     document.getElementById('oneProduct').innerHTML = "";
+    document.getElementById('myCart').innerText = "";
+    document.getElementById('productsInCart').innerHTML = "";
 
     const newProduct = document.getElementById('newProduct');
     const productForm = document.createElement('div');
