@@ -98,7 +98,6 @@ class AnyContainer {
     }
 
     async deleteProdById(id, id_prod) {
-        console.log("Llego id de producto ",id," para eliminar")
         try {
             const elements = await this.getAll()
 

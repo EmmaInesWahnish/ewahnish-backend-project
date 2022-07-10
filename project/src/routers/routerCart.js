@@ -123,7 +123,6 @@ routerCart.post('/:id/productos', async (req, res) => {
                 }
             }
             try {
-                console.log("llegue aca y mando ", modifiedCart)
                 await Cart.modifyById(cartId, modifiedCart);
                 res.json({
                     message: 'Modificacion exitosa',
@@ -159,12 +158,10 @@ routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
         const indexc = carts.findIndex(element => element.id === id);
         const searchedCart = carts[indexc];
         const productArray = searchedCart.productos;
-        console.log("Productos .1 ", productArray)
         if (indexc !== -1) {
             const indexp = productArray.findIndex(element => element.id === id_prod);
             if (indexp !== -1) {
                 try {
-                    console.log("llegue aca y mando ", id, id_prod)
                     await Cart.deleteProdById(id, id_prod);
                     res.json({
                         message: 'Eliminacion exitosa',
