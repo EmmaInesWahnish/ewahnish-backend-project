@@ -477,22 +477,5 @@
             "cantidad": 1
          }
       ]
-   },
-   {
-      "id": 28,
-      "timestamp": 1657417400708,
-      "productos": [
-         {
-            "id": 12,
-            "timestamp": 1656710054455,
-            "nombre": "Cricket Carrito Hidraulico",
-            "descripcion": "Cricket carrito hidraulico 2 toneladas",
-            "codigo": "CC-00-01",
-            "foto": "/images/cricket-carrito.jpeg",
-            "precio": 8400,
-            "stock": 80,
-            "cantidad": 1
-         }
-      ]
    }
 ]

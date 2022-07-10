@@ -12,6 +12,7 @@ const renderCarts = () => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
+    document.getElementById('homePage').innerHtml = "";
     
 
     const thisCart = document.getElementById('thisCart');

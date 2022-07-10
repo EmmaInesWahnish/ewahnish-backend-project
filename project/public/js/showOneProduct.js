@@ -10,6 +10,7 @@ const renderProducts = (productId) => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
+    document.getElementById('homePage').innerText = "";
 
 
     const productRoute = `http://localhost:8080/api/productos/${productId}`

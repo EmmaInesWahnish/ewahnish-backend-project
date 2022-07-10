@@ -9,6 +9,7 @@ const renderNewProductForm = () => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
+    document.getElementById('homePage').innerHtml = "";
 
     const newProduct = document.getElementById('newProduct');
     const productForm = document.createElement('div');

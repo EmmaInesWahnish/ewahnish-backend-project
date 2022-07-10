@@ -23,6 +23,7 @@ const renderProducts = () => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
+    document.getElementById('homePage').innerHtml = "";
 
 
     fetch('http://localhost:8080/api/productos')

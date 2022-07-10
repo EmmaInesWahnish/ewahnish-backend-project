@@ -2,6 +2,8 @@ import renderProducts from './renderProducts.js';
 
 import renderCarts from './renderCarts.js';
 
+import renderHome from './renderHome.js'
+
 import renderNewProductForm from './renderNewProductForm.js';
 
 import renderModalOneProduct from './renderModalOneProduct.js';
@@ -18,8 +20,14 @@ const deleteCart = document.getElementById('deleteCart');
 
 const listCart =document.getElementById('listCart');
 
+const homePage = document.getElementById('home');
+
 listProducts.addEventListener('click', () => {
     renderProducts();
+});
+
+homePage.addEventListener('click', () => {
+    renderHome();
 });
 
 createProduct.addEventListener('click', () => {
