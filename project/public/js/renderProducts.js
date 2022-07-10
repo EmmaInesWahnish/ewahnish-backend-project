@@ -23,9 +23,9 @@ const renderProducts = () => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
-    
+
     const homePage = document.getElementById("homePage")
-    
+
     let show = function (elem) {
         elem.style.display = 'block';
     };
@@ -151,6 +151,8 @@ const renderProducts = () => {
 
                     addProductToCart.addEventListener('click', function () {
 
+                        let cartId = Number(cartNumber.innerText)
+
                         if (cartId === 0) {
 
                             let cart = {
@@ -161,11 +163,12 @@ const renderProducts = () => {
 
                             let cartNumber = document.getElementById("cartNumber")
 
-                            let cartId2 = Number(cartNumber.innerText)
+                            cartId = Number(cartNumber.innerText)
 
+                        } else {
+                            cartId = Number(cartNumber.innerText)
+                            renderModalAddToCart(product, quantity[product.id], cartId);
                         }
-
-                        renderModalAddToCart(product, quantity[product.id], 2);
 
                     })
 

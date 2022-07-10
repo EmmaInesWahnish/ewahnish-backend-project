@@ -30,8 +30,6 @@ const renderModalAddToCart = (product, quantity, cartId) => {
         .catch(error => {
             console.log('Se produjo el siguiente error: ', error);
         })
-
-
 }
 
 export default renderModalAddToCart;

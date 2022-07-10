@@ -110,11 +110,13 @@ routerCart.post('/:id/productos', async (req, res) => {
             const productArray = searchedCart.productos;
             console.log("Productos .1 ", productArray)
             indexp = productArray.findIndex(element => element.id === receive.id);
+            console.log(indexp)
             if (indexp !== -1) {
                 carts[indexc].productos[indexp].cantidad = carts[indexc].productos[indexp].cantidad + receive.cantidad;
                 modifiedProduct = carts[indexc];
             }
             else {
+                console.log("recibo ", receive)
                 productArray.push(receive);
                 modifiedCart = {
                     id: cartId,
