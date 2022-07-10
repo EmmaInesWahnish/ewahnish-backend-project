@@ -1,6 +1,6 @@
 import renderProducts from './renderProducts.js';
 
-import renderCarts from './renderCarts.js';
+import renderModalOneCart from './renderModalOneCart.js';
 
 import renderHome from './renderHome.js'
 
@@ -43,5 +43,5 @@ deleteCart.addEventListener('click', () => {
 }) 
 
 listCart.addEventListener('click', () => {
-    renderCarts()
+    renderModalOneCart()
 }) 

@@ -1,5 +1,4 @@
-//element.parentNode.removeChild(element);
-const renderCarts = () => {
+const renderCarts = (cartNumber) => {
     let quantity = []
     let i = 0
     let cartId = 0;
@@ -23,13 +22,6 @@ const renderCarts = () => {
     };
 
     hide(homePage)
-
-    const thisCart = document.getElementById('thisCart');
-
-    let cartNumber = Number(thisCart.innerText);
-
-    //Para probar listado
-    cartNumber = 2;
 
     const productRoute = `http://localhost:8080/api/carrito/${cartNumber}`
 
