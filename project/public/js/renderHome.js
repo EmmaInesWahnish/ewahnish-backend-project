@@ -7,12 +7,17 @@ const renderHome = () => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
-    document.getElementById('homePage').innerHtml = "";
 
+    const homePage = document.getElementById("homePage")
+    
+    let show = function (elem) {
+        elem.style.display = 'block';
+    };
+    let hide = function (elem) {
+        elem.style.display = 'none';
+    };
 
-    const homePage = document.getElementById('homePage');
-
-    //homePage.innerHTML = `<img src='../images/herramientas.svg'>`
+    show(homePage)
 }
 
 export default renderHome;

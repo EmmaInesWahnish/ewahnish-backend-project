@@ -23,7 +23,17 @@ const renderProducts = () => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
-    document.getElementById('homePage').innerHtml = "";
+    
+    const homePage = document.getElementById("homePage")
+    
+    let show = function (elem) {
+        elem.style.display = 'block';
+    };
+    let hide = function (elem) {
+        elem.style.display = 'none';
+    };
+
+    hide(homePage)
 
 
     fetch('http://localhost:8080/api/productos')

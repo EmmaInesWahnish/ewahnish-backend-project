@@ -12,8 +12,17 @@ const renderCarts = () => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
-    document.getElementById('homePage').innerHtml = "";
     
+    const homePage = document.getElementById("homePage")
+    
+    let show = function (elem) {
+        elem.style.display = 'block';
+    };
+    let hide = function (elem) {
+        elem.style.display = 'none';
+    };
+
+    hide(homePage)
 
     const thisCart = document.getElementById('thisCart');
 
@@ -30,7 +39,7 @@ const renderCarts = () => {
 
             const myCart = document.getElementById('myCart')
 
-            myCart.innerText = `Contenido del Carrito ${cartNumber}`;
+            myCart.innerText = `Carrito Nro. ${cartNumber}`;
 
             const cartContainer = document.getElementById('productsInCart')
 

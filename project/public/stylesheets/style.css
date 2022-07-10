@@ -870,3 +870,11 @@ i {
 .displayBlock {
   display:block
 }
+
+.toggle-content {
+	display: none;
+}
+
+.toggle-content.is-visible {
+	display: block;
+}
