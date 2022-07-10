@@ -1,3 +1,5 @@
+import renderHome from './renderHome.js';
+
 const renderCarts = (cartNumber) => {
     document.getElementById('activeCart').innerHTML = "";
     document.getElementById('cartNumber').innerHTML = "";
@@ -6,9 +8,9 @@ const renderCarts = (cartNumber) => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
-    
+
     const homePage = document.getElementById("homePage")
-    
+
     let show = function (elem) {
         elem.style.display = 'block';
     };
@@ -23,16 +25,20 @@ const renderCarts = (cartNumber) => {
     fetch(productRoute)
         .then(res => res.json())
         .then(data => {
+            if (data.message === "carrito no encontrado") {
+                alert("Carrito no encontrado");
+                renderHome();
+            } else {
 
-            const myCart = document.getElementById('myCart')
+                const myCart = document.getElementById('myCart')
 
-            myCart.innerText = `Carrito Nro. ${cartNumber}`;
+                myCart.innerText = `Carrito Nro. ${cartNumber}`;
 
-            const cartContainer = document.getElementById('productsInCart')
+                const cartContainer = document.getElementById('productsInCart')
 
-            const tableHead = document.createElement('tr');
+                const tableHead = document.createElement('tr');
 
-            tableHead.innerHTML = `<th>
+                tableHead.innerHTML = `<th>
                                             <p> 
                                                 Id 
                                             </p>
@@ -68,11 +74,11 @@ const renderCarts = (cartNumber) => {
                                             </p>
                                         </th>`
 
-            cartContainer.appendChild(tableHead)
+                cartContainer.appendChild(tableHead)
 
-            for (let product of data.productos) {
-                const tableBody = document.createElement('tr')
-                tableBody.innerHTML = `<td>
+                for (let product of data.productos) {
+                    const tableBody = document.createElement('tr')
+                    tableBody.innerHTML = `<td>
                                             <p> 
                                                 ${product.id} 
                                             </p>
@@ -106,8 +112,8 @@ const renderCarts = (cartNumber) => {
                                             </p>
                                         </th>`
 
-                cartContainer.appendChild(tableBody)
-
+                    cartContainer.appendChild(tableBody)
+                }
             }
         })
         .catch(err => console.log(err))
