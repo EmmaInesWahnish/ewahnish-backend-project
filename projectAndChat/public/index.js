@@ -19,8 +19,6 @@ form.addEventListener('submit', function (e) {
 productForm.addEventListener('submit', function (e) {
     e.preventDefault();
     let message = addProduct();
-    let noHay = document.getElementById('noHay');
-    noHay.style.display="none";
     if (title.value) {
         socket.emit('new product', message)
         title.value = '';
@@ -47,6 +45,7 @@ socket.on('old messages', (msg) => {
 })
 
 socket.on('new product', (msg) => {
+    console.log(msg)
     renderProduct(msg);
     window.scrollTo(0, document.body.scrollHeight);
 })
@@ -83,6 +82,7 @@ function addProduct(e) {
   }
 
   function renderProduct(data) {
+    document.getElementById('noHay').innerText ="";
     const productTable = document.getElementById('products')
     const where = document.createElement('tr')
     where.innerHTML = `<td>
