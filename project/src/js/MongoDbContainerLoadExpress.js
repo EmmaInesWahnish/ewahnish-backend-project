@@ -1,4 +1,4 @@
-import AnyContainer from '../api/Container.js';
+import ProductsDaoMongoDb from '../daos/products/ProductsDaoMongoDb.js';
 const products = [
     {
         timestamp: Date.now(),
@@ -191,11 +191,11 @@ const products = [
     },
 ]
 
-const Products = new AnyContainer('./files/productos.txt');
+const Products = new ProductsDaoMongoDb();
 
 async function anyContainerLoader() {
 
-    await Products.deleteLoadExpress(products)
+    await Products.saveArray(products)
     
 }
 

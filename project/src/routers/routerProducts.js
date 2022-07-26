@@ -1,12 +1,13 @@
 import express from 'express';
-import AnyContainer from "../api/Container.js";
+import { Products} from "../daos/daosProducts.js";
+import envs from '../../dotenvConfig.js'
 
 const routerProducts = express.Router();
 import fs from 'fs';
 
-const Products = new AnyContainer('./files/productos.txt');
+let isAdmin;
 
-let isAdmin = false;
+(envs.IS_ADMIN === 'true') ? isAdmin = true : isAdmin = false;
 
 // *** ROUTES ***
 //This route returns the products list
@@ -29,31 +30,27 @@ routerProducts.get('/', async (req, res) => {
 
 //This route returns a product according to its id.
 routerProducts.get('/:id', async (req, res) => {
-    let id = parseInt(req.params.id);
-    if (!isNaN(id)) {
-        try {
-            const producto = await Products.getById(id);
-            if (producto != undefined) {
-                res.json({
-                    message: 'Producto encontrado',
-                    product: producto,
-                    bool: isAdmin
-                })
-            } else {
-                res.json({
-                    message: "Producto no encontrado"
-                })
-            }
-        }
-        catch (error) {
+    let id = req.params.id;
+    console.log("Id en routerProduct ", id)
+    try {
+        const producto = await Products.getById(id);
+        console.log("El producto ", producto)
+        if (producto != undefined) {
             res.json({
-                message: "Se produjo un error al buscar el producto",
-                error: error
+                message: 'Producto encontrado',
+                product: producto,
+                bool: isAdmin
+            })
+        } else {
+            res.json({
+                message: "Producto no encontrado"
             })
         }
-    } else {
+    }
+    catch (error) {
         res.json({
-            "error": "El id solicitado no es numerico"
+            message: "Se produjo un error al buscar el producto",
+            error: error
         })
     }
 })
@@ -78,13 +75,14 @@ routerProducts.post('/', async (req, res) => {
         }]
         if (producto) {
             try {
-                await Products.saveArray(producto);
+                const theProductId = await Products.save(producto);
                 try {
                     const products = await Products.getAll();
                     res.json({
                         message: "Producto incorporado",
                         product: producto,
                         bool: isAdmin,
+                        theProductId: theProductId
                     })
                 }
                 catch (error) {
@@ -117,14 +115,13 @@ routerProducts.put('/:id', async (req, res) => {
             error: -1
         })
     } else {
-        const id = parseInt(req.params.id);
+        const id = req.params.id;
         let receive = req.body;
-        let searchedProduct = {};
         console.log("The id ", id, "receive  ", receive)
         try {
             const products = await Products.getAll();
-            const index = products.findIndex(element => element.id === id);
-            searchedProduct = products[index];
+            const index = products.findIndex(element => element.id == id);
+            let searchedProduct = products[index];
             console.log(index, " product.nombre ", receive.nombre);
             if (index !== -1) {
 
@@ -147,6 +144,8 @@ routerProducts.put('/:id', async (req, res) => {
                     products[index].stock = receive.stock;
                 }
 
+                searchedProduct = products[index];
+                console.log(searchedProduct);
                 //The array gets updated here
                 let array = [];
 
@@ -162,12 +161,36 @@ routerProducts.put('/:id', async (req, res) => {
 
                     })
                 })
-
-                //productos.txt file is replaced with the updated array
-                try {
-                    await fs.promises.unlink('./files/productos.txt');
+                console.log("Array in routerProducts ", array)
+                //productos.json file is replaced with the updated array
+                if (envs.APIP_TYPE === "FILE") {
                     try {
-                        await Products.saveArray(array);
+                        await fs.promises.unlink('./DB/productos.json');
+                        try {
+                            await Products.saveArray(array);
+                            res.json({
+                                message: 'Modificacion exitosa',
+                                product: array
+                            })
+                        }
+                        catch (error) {
+                            res.json({
+                                message: 'No fue posible cargar los productos en productos.txt',
+                                error: error
+                            })
+                        }
+                    }
+                    catch (error) {
+                        res.json({
+                            message: 'No se pudo borrar el archivo productos.txt',
+                            error: error
+                        })
+                    }
+
+                }
+                else {
+                    try {
+                        await Products.modifyById(id, searchedProduct);
                         res.json({
                             message: 'Modificacion exitosa',
                             product: array
@@ -175,16 +198,10 @@ routerProducts.put('/:id', async (req, res) => {
                     }
                     catch (error) {
                         res.json({
-                            message: 'No fue posible cargar los productos en productos.txt',
+                            message: 'No fue posible modificar el producto',
                             error: error
                         })
                     }
-                }
-                catch (error) {
-                    res.json({
-                        message: 'No se pudo borrar el archivo productos.txt',
-                        error: error
-                    })
                 }
             } else {
                 res.json({
@@ -209,31 +226,25 @@ routerProducts.delete('/:id', async (req, res) => {
             error: -1
         })
     } else {
-        const id = parseInt(req.params.id);
+        const id = req.params.id;
         console.log(id);
-        if (!isNaN(id)) {
-            try {
-                const removedProduct = await Products.deleteById(id);
-                if (removedProduct.length === 0) {
-                    res.json({
-                        message: "El producto solicitado no existe"
-                    })
-                } else {
-                    res.json({
-                        message: "El producto ha sido eliminado",
-                        product: removedProduct
-                    })
-                }
-            }
-            catch (error) {
+        try {
+            const removedProduct = await Products.deleteById(id);
+            if (removedProduct.length === 0) {
                 res.json({
-                    message: "El producto no pudo ser eliminado",
-                    error: error
+                    message: "El producto solicitado no existe"
+                })
+            } else {
+                res.json({
+                    message: "El producto ha sido eliminado",
+                    product: removedProduct
                 })
             }
-        } else {
+        }
+        catch (error) {
             res.json({
-                message: "El id suministrado no es numerico"
+                message: "El producto no pudo ser eliminado",
+                error: error
             })
         }
     }

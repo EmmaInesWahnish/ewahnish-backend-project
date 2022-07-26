@@ -13,7 +13,9 @@ let array = [];
 //element.parentNode.removeChild(element);
 const renderProducts = () => {
     let qobject = [{}];
-    let cartId = '';
+    let quantity = [];
+    let i = 0;
+    let cartId = 0;
     let cart = [];
 
     document.getElementById('activeCart').innerHTML = "";
@@ -50,15 +52,15 @@ const renderProducts = () => {
                    value: 0,
                    id: product.id 
                 });
+                quantity[product.id] = 0;
                 let pictureId = "PIC" + product.id;
                 const cards = document.createElement('div');
 
                 cards.setAttribute('class', 'flex-container-card')
 
                 cards.innerHTML = `<div>
-                                    <div id=${product.id} class="card-header center big_id" width="300px" >
-                                        <h6>${product.id}</h6>
-                                        <h3>${product.codigo}</h3>
+                                    <div id=${product.id} class="card-header center" width="300px" >
+                                        <h3>${product.id} ${product.codigo}</h3>
                                         <h3><i>${product.nombre}</i></h3> 
                                         <h3>${product.descripcion}</h3>
                                         <h3>Precio: ${product.precio}</h3>
@@ -107,11 +109,7 @@ const renderProducts = () => {
 
                     formDeleteProduct.addEventListener('click', function () {
 
-                        let i = findQobject(qobject, product.id);
-
-                        let quantity = qobject[i].value;
-
-                        renderModalDeleteProduct(product, quantity);
+                        renderModalDeleteProduct(product, quantity[product.id]);
 
                     })
 
@@ -121,10 +119,6 @@ const renderProducts = () => {
 
                     activeCart.innerHTML = `No hay carrito activo`
 
-                    let i = findQobject(qobject, product.id);
-
-                    let quantity = qobject[i].value;
-
                     buttons.innerHTML = `<div class="flex-container-buttons  p-0 m-0" style="width:250px">
                                             <button id=A${product.id}
                                                     class="btn btn-xs btn-light">
@@ -132,7 +126,7 @@ const renderProducts = () => {
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
 </svg>
                                             </button>
-                                            <div id=Q${product.id} class="flex-item"><span> ${quantity} </span></div>
+                                            <div id=Q${product.id} class="flex-item"><span> ${quantity[product.id]} </span></div>
                                             <button id=S${product.id}
                                                     class="btn btn-xs btn-light">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
@@ -162,42 +156,38 @@ const renderProducts = () => {
 
                     addProductToCart.addEventListener('click', function () {
 
-                        let i = findQobject(qobject, product.id);
+                        let cartId = Number(cartNumber.innerText)
 
-                        let quantity = qobject[i].value;
-
-                        let cartId = cartNumber.innerText
-
-                        if (cartId === '') {
+                        if (cartId === 0) {
 
                             let cart = {
                                 timestamp: Date.now(),
                                 productos: [],
                             }
-                            cartId = createACart(cart, quantity, product);
+                            cartId = createACart(cart, quantity[product.id], product);
 
                             let cartNumber = document.getElementById("cartNumber")
 
-                            cartId = cartNumber.innerText
+                            cartId = Number(cartNumber.innerText)
 
                         } else {
-                            cartId = cartNumber.innerText
-                            renderModalAddToCart(product, quantity, cartId);
+                            cartId = Number(cartNumber.innerText)
+                            renderModalAddToCart(product, quantity[product.id], cartId);
                         }
 
                     })
 
                     let dButtonId = `C${product.id}`
 
-                    let productId = `${product.id}`
+                    let productId = Number(`${product.id}`)
 
                     let deleteProductFromCart = document.getElementById(dButtonId);
 
                     deleteProductFromCart.addEventListener('click', function () {
 
-                        let cartId2 = cartNumber.innerText
+                        let cartId2 = Number(cartNumber.innerText)
 
-                        if (cartId2 === '') {
+                        if (cartId2 === 0) {
                             alert(`Aun no se ha habilitado ningun carrito`);
                         } else {
                             renderModalDeleteFromCart(productId, cartId2);
@@ -209,8 +199,10 @@ const renderProducts = () => {
                     let add = document.getElementById(aButtonId);
 
                     add.addEventListener('click', function () {
+
+                        quantity[product.id] = addToQuantity(quantity[product.id], product);
                         let i = findQobject(qobject, product.id);
-                        qobject[i].value = addToQuantity(qobject[i].value, product);
+                        console.log("El objeto ", qobject[i].id, " Id de producto ", product.id)
                     })
 
                     let sButtonId = `S${product.id}`
@@ -219,10 +211,12 @@ const renderProducts = () => {
 
                     subtract.addEventListener('click', function () {
                         let i = findQobject(qobject, product.id);
-                        qobject[i].value = subtractFromQuantity(qobject[i].value, product);
+                        quantity[product.id] = subtractFromQuantity(quantity[product.id], product);
+
                     })
 
                 }
+                 console.log("Object array ", qobject)
                 let showOneProductId = `${pictureId}`
 
                 let oneProduct = document.getElementById(showOneProductId);

@@ -1,4 +1,4 @@
-import AnyContainer from '../api/Container.js';
+import ProductsDaoFirebase from '../daos/products/ProductsDaoFirebase.js';
 const products = [
     {
         timestamp: Date.now(),
@@ -191,11 +191,11 @@ const products = [
     },
 ]
 
-const Products = new AnyContainer('./files/productos.txt');
+const Products = new ProductsDaoFirebase();
 
 async function anyContainerLoader() {
 
-    await Products.deleteLoadExpress(products)
+    await Products.saveArray(products)
     
 }
 

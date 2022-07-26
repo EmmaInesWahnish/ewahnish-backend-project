@@ -21,10 +21,12 @@ const renderModalOneProduct = () => {
 
     theId.addEventListener('change', function(){
 
-        productId = Number(document.getElementById('theId').value);   
+        productId = document.getElementById('theId').value;   
     })
 
     formUpdate.addEventListener('click', function () {
+
+        console.log(productId)
 
         showOneProduct(productId);
 
