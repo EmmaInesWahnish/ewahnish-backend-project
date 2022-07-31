@@ -4,12 +4,18 @@ import envs from '../../dotenvConfig.js';
 
 const routerCart = express.Router();
 
+const whichDb = envs.APIC_TYPE;
+
 // *** ROUTES ***
 //This route returns all carts
 routerCart.get('/', async (req, res) => {
     try {
         const array = await Cart.getAll();
-        res.json({ message: 'Carritos ', carrito: array });
+        res.json({
+            message: 'Carritos ',
+            carrito: array,
+            whichDb: whichDb
+        });
     }
     catch (error) {
         res.json({
@@ -24,13 +30,14 @@ routerCart.get('/:id', async (req, res) => {
     let id = req.params.id;
     try {
         const carrito = await Cart.getById(id);
+        console.log("In getById ", carrito)
         if (carrito != undefined) {
             res.json({
                 message: 'carrito encontrado',
-                id: carrito.id,
-                timestamp: carrito.timestamp,
-                productos: carrito.productos
+                carrito: carrito,
+                whichDb: whichDb
             })
+            console.log("En routerCart carrito ", carrito)
         } else {
             res.json({
                 message: "carrito no encontrado"
@@ -48,20 +55,27 @@ routerCart.get('/:id', async (req, res) => {
 //This route ads an empty cart
 routerCart.post('/', async (req, res) => {
     let receive = req.body;
-    let carrito = [{
+    let carrito = {
         timestamp: receive.timestamp,
         productos: receive.productos,
-    }]
+    }
     if (carrito) {
+        let cartId
         try {
-            await Cart.saveArray(carrito);
+            const theProductId = await Cart.save(carrito)
             try {
                 const carrito = await Cart.getAll();
-                const cartId = carrito[carrito.length - 1].id;
+                if (whichDb === 'FIREBASE') {
+                    cartId = theProductId;
+                }
+                else {
+                    cartId = carrito[carrito.length - 1].id;
+                }
                 res.json({
                     message: "Carrito incorporado",
                     carrito: carrito,
-                    cartId: cartId
+                    cartId: cartId,
+                    whichDb: whichDb
                 })
             }
             catch (error) {
@@ -104,9 +118,7 @@ routerCart.post('/:id/productos', async (req, res) => {
             let cartId = searchedCart.id;
             let cartTimestamp = searchedCart.timestamp;
             const productArray = searchedCart.productos;
-            console.log("Productos .1 ", productArray)
             indexp = productArray.findIndex(element => element.id == receive.id);
-            console.log(indexp)
             if (indexp !== -1) {
                 carts[indexc].productos[indexp].cantidad = carts[indexc].productos[indexp].cantidad + receive.cantidad;
                 modifiedProduct = carts[indexc];
@@ -120,18 +132,33 @@ routerCart.post('/:id/productos', async (req, res) => {
                     productos: productArray
                 }
             }
-            try {
-                await Cart.modifyById(cartId, modifiedCart);
-                res.json({
-                    message: 'Modificacion exitosa',
-                    product: modifiedCart
-                })
+            if ((whichDb === 'SQL') || (whichDb === 'MARIADB')) {
+                try {
+                    await Cart.updateJsonType(cartId, productArray)
+                }
+                catch (error) {
+                    res.json({
+                        message: 'No fue posible cargar los productos',
+                        error: error
+                    })
+                }
             }
-            catch (error) {
-                res.json({
-                    message: 'No fue posible cargar los productos en productos.txt',
-                    error: error
-                })
+            else {
+                try {
+                    await Cart.modifyById(cartId, modifiedCart);
+                    res.json({
+                        message: 'Modificacion exitosa',
+                        product: modifiedCart,
+                        cartId: cartId,
+                        whichDb: whichDb
+                    })
+                }
+                catch (error) {
+                    res.json({
+                        message: 'No fue posible cargar los productos',
+                        error: error
+                    })
+                }
             }
         }
         else {

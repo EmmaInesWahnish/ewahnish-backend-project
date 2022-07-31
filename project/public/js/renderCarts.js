@@ -29,8 +29,25 @@ const renderCarts = (cartNumber) => {
                 alert("Carrito no encontrado");
                 renderHome();
             } else {
-
                 const myCart = document.getElementById('myCart')
+
+                const carrito = data.carrito;
+
+                const whichDb = data.whichDb;
+
+                let productos = []
+
+                switch (whichDb) {
+                    case 'MONGODB':
+                        productos = carrito[0].productos;
+                        break;
+                    case 'FIREBASE':
+                        productos = carrito.productos;
+                        break;
+                    default:
+                        productos = carrito.productos;
+                        break;
+                }
 
                 myCart.innerText = `Carrito Nro. ${cartNumber}`;
 
@@ -76,7 +93,7 @@ const renderCarts = (cartNumber) => {
 
                 cartContainer.appendChild(tableHead)
 
-                for (let product of data.productos) {
+                for (let product of productos) {
                     const tableBody = document.createElement('tr')
                     tableBody.innerHTML = `<td>
                                             <p> 
