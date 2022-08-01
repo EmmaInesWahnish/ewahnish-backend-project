@@ -97,29 +97,23 @@ class AnyContainer {
         }
     }
 
-    async deleteProdById(id, id_prod) {
+    async deleteProdById(id, id_prod, indexp, productArray) {
         try {
             const elements = await this.getAll()
 
-            const whichId = elements.findIndex(element => element.id === id);
+            const whichId = elements.findIndex(element => element.id == id);
 
-            const productArray = elements[whichId].productos;
-
-            const whichIdProd = productArray.findIndex(element => element.id === id_prod);
-
-            let removedProduct = productArray.splice(whichIdProd, 1);
+            let removedProduct = productArray.splice(indexp, 1);
 
             const modifiedCart = {
-                id: elements[whichId].id,
+                id: id,
                 timestamp: elements[whichId].timestamp,
                 productos: productArray,
             }
 
-            if (productArray.length === 0)
-
             if (whichId !== -1) {
                 let modifiedObject = elements.splice(whichId, 1, modifiedCart);
-                console.log("Modified item ", modifiedObject);
+                console.log("item eliminado ", modifiedObject)
                 await fs.promises.writeFile(this.anyFile, JSON.stringify(elements, null, 3))
                 return modifiedObject;    
             } else {

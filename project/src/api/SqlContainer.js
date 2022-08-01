@@ -31,6 +31,9 @@ class SqlContainer {
     async save(item) {
         try {
             await this.myDbConnection(this.myTable).insert(item);
+            const array = await this.getAll();
+            theProductId = array[array.length - 1].id;
+            return theProductId;
         }
         catch (e) {
             console.log(e);
@@ -122,6 +125,31 @@ class SqlContainer {
             return error
         }
 
+    }
+
+    async deleteProdById(id, id_prod, indexp, productArray) {
+        console.log("The id ", id)
+        console.log("Id_prod ", id_prod)
+        try {
+            const element = await this.getById(id)
+
+            console.log(element)
+
+            const timestamp = element[0].timestamp;
+
+            let removedProduct = productArray.splice(indexp, 1);
+
+            const modifiedCart = {
+                id: id,
+                timestamp: timestamp,
+                productos: JSON.stringify(productArray),
+            }
+
+            this.modifyById(id, modifiedCart)
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 }
