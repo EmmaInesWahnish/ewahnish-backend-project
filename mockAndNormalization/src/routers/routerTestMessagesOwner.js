@@ -1,15 +1,15 @@
 const express = require('express');
 const MessagesDao = require('../daos/MessagesDao.js');
-const messageNormalizeDenormalize = require('../js/messajesNormalizeDenormalize.js');
-const routerTestMessages = express.Router();
+const messageNormalizeDenormalizeOwner = require('../js/messajesNormalizeDenormalizeOwner.js');
+const routerTestMessagesOwner = express.Router();
 
 const MessagesTest = new MessagesDao();
 
-routerTestMessages.get('/', async (req, res) => {
+routerTestMessagesOwner.get('/', async (req, res) => {
     let bothLists = {};
     let generated_messages = [];
     try {
-        generated_messages = await MessagesTest.populate(20);
+        generated_messages = await MessagesTest.populateOwner(20);
     }
     catch (error) {
         res.json({
@@ -19,7 +19,7 @@ routerTestMessages.get('/', async (req, res) => {
     }
 
     try {
-        bothLists = await messageNormalizeDenormalize(generated_messages);
+        bothLists = await messageNormalizeDenormalizeOwner(generated_messages);
         res.json({
             lists: bothLists
         })
@@ -33,4 +33,4 @@ routerTestMessages.get('/', async (req, res) => {
     //res.render('messages.hbs', { generated_messages })
 })
 
-module.exports = routerTestMessages
+module.exports = routerTestMessagesOwner

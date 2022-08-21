@@ -66,9 +66,18 @@ const alias = [
     'Paul'
 ];
 
-const generateMessage = (id) => {
+const generateMessageOwner = (id) => {
     let i = Math.floor(Math.random() * 5);
     let generated_message = {
+        chat_owner: {
+            id: ids[0],
+            email: emails[0],
+            nombre: nombres[0],
+            apellido: apellidos[0],
+            edad: edades[0],
+            alias: alias[0],
+            avatar: avatars[0],
+        },
         message: {
             id: id,
             timestamp: new Date(),
@@ -87,4 +96,4 @@ const generateMessage = (id) => {
     return generated_message
 }
 
-module.exports = generateMessage
+module.exports = generateMessageOwner
