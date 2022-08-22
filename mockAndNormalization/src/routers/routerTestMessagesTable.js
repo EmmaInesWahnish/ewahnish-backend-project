@@ -4,17 +4,17 @@ const messageNormalizeDenormalize = require('../js/messajesNormalizeDenormalize.
 const normalizedMessages = '../../files/normalizedMessages.json';
 const denormalizedMessages = '../../files/normalizedMessages.json';
 
-const routerTestMessages = express.Router();
+const routerTestMessagesTable = express.Router();
 
 const MessagesTest = new MessagesDao();
 
 
-routerTestMessages.get('/', async (req, res) => {
+routerTestMessagesTable.get('/', async (req, res) => {
     let generated_messages = [];
     for (let i = 0; i < 4; i++) {
         let message_group =[]
         try {
-            message_group = await MessagesTest.populate(req.query.cant);
+            message_group = await MessagesTest.populate(req.query.quantity);
             for (let j= 0; j < message_group.length; j++){
                 generated_messages.push(message_group[j]);
             }
@@ -40,4 +40,4 @@ routerTestMessages.get('/', async (req, res) => {
     res.render('messages.hbs', { generated_messages })
 })
 
-module.exports = routerTestMessages
+module.exports = routerTestMessagesTable

@@ -9,7 +9,7 @@ const ProductsTest = new ProductsDao();
 routerTestProducts.get('/', async (req, res) => {
     let generated_products = []
     try {
-        generated_products = await ProductsTest.populate(req.query.cant);
+        generated_products = await ProductsTest.populate(req.query.quantity);
         res.render('products.hbs', { generated_products })        
     }
     catch (error) {

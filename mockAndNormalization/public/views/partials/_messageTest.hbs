@@ -10,16 +10,16 @@
         {{#each generated_messages}}
         <tr>
             <td>
-                {{this.author.email}}
+                {{this.message.author.email}}
             </td>
             <td>
-                {{this.timestamp}}
+                {{this.message.timestamp}}
             </td>
             <td>
-                {{this.text}}
+                {{this.message.text}}
             </td>
             <td>
-                <img class="avatar" src={{this.author.avatar}}>
+                <img class="avatar" src={{this.message.author.avatar}}>
             </td>
         </tr>
         {{/each}}

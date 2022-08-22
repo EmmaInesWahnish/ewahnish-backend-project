@@ -9,7 +9,7 @@ routerTestMessages.get('/', async (req, res) => {
     let bothLists = {};
     let generated_messages = [];
     try {
-        generated_messages = await MessagesTest.populate(20);
+        generated_messages = await MessagesTest.populate(req.query.quantity);
     }
     catch (error) {
         res.json({

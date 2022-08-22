@@ -21,7 +21,7 @@ class MessagesDao extends MemoryContainer {
         return newMessages;
     }
 
-    populateOwner(quantity=5) {
+    populateOwner(quantity=20) {
         this.deleteAll();
         let newMessages = [];
         for(let i=0; i < quantity; i++ ){

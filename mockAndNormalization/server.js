@@ -7,6 +7,7 @@ const Handlebars = require('handlebars');
 const routerTestProducts = require('./src/routers/routerTestProducts.js');
 const routerTestMessages = require('./src/routers/routerTestMessages.js');
 const routerTestMessagesOwner = require('./src/routers/routerTestMessagesOwner.js');
+const routerTestMessagesTable = require('./src/routers/routerTestMessagesTable.js');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
@@ -41,6 +42,7 @@ app.set('view engine', 'html');
 app.use('/api/productos-test', routerTestProducts);
 app.use('/api/mensajes-test', routerTestMessages);
 app.use('/api/mensajes-test-owner', routerTestMessagesOwner);
+app.use('/api/mensajes-test-table', routerTestMessagesTable);
 
 app.get('/', async (req, res) => {
 
