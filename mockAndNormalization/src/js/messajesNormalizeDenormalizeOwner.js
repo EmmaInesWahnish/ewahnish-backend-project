@@ -29,12 +29,16 @@ const normalizeAndDenormalize = async (messageList) => {
         console.log("Original Size ", originalSize);
         let normalizedList = await normalize(post, postSchema);
         normalizedSize = JSON.stringify(normalizedList).length;
+        let percentage = Math.floor(((Number(originalSize)-Number(normalizedSize))*100)/Number(originalSize))
         console.log("Normalized size ", normalizedSize);
         console.log(JSON.stringify(normalizedList.result, null, '\t'))
         try {
             let denormalizedList = await denormalize(normalizedList.result, postSchema, normalizedList.entities);
             console.log(JSON.stringify(denormalizedList, null, '\t'))
             bothLists = {
+                originalSize: originalSize,
+                normalizedSize: normalizedSize,
+                percentage: percentage,
                 normalized: normalizedList,
                 denormalized: denormalizedList
             }
