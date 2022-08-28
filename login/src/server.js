@@ -33,7 +33,7 @@ app.use(session({
     store: MongoStore.create({
         mongoUrl:URL,
         mongoOptions:{useNewUrlParser:true,useUnifiedTopology:true},
-        ttl:3600
+        ttl: 600
     }),
     secret:"SecretPhraseRumplestilskin007",
     resave: false,
