@@ -7,3 +7,4 @@
 {"level":"error","message":"404 - ruta no encontrada /api/isdamin","service":"user-service","timestamp":"2022-10-03T20:24:43.870Z"}
 {"level":"error","message":"404 - ruta no encontrada /api/products/isadmin","service":"user-service","timestamp":"2022-10-03T20:25:06.471Z"}
 {"level":"error","message":"404 - ruta no encontrada /favicon.ico","service":"user-service","timestamp":"2022-10-04T13:16:02.993Z"}
+{"level":"error","message":"404 - ruta no encontrada /favicon.ico","service":"user-service","timestamp":"2022-10-08T12:07:03.137Z"}
